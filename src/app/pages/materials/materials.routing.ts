@@ -7,7 +7,7 @@ import { ModuleWithProviders } from '@angular/core';
 export const routes: Routes = [
   {
     path: '',
-    component: Dashboard,
+    component: Materials,
     children: [
       //{ path: 'treeview', component: TreeViewComponent }
     ]

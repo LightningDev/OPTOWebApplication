@@ -37,7 +37,7 @@ export interface AppConfig {
 }
 
 export const APPCONFIG:AppConfig = {
-  BASE_URL: 'http://192.168.222.1:8000',
+  BASE_URL: 'http://192.168.222.108:8000',
   APP_ID: 'OPTO',
   APP_PASSWORD: 'opto',
 };
