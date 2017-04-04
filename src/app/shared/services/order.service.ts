@@ -17,7 +17,7 @@ export class OrderService {
 
   getOrder():Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/salesorder`,
+      `${this.config.BASE_URL}/api/salesorder?web=1`,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)

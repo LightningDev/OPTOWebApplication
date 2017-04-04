@@ -30,17 +30,25 @@ export class Order {
       confirmDelete: true
     },
     columns: {
-      order_no: {
-        title: 'Order No',
+      order_code: {
+        title: 'Order ID',
         type: 'string'
       },
-      customer: {
-        title: 'Client Code',
+      customer_name: {
+        title: 'Customer Name',
         type: 'string'
       },
-      part_code: {
-        title: 'Job Description',
+       customer: {
+        title: 'Customer ID',
         type: 'string'
+      },
+       contact_name: {
+        title: 'Contact Name',
+        type: 'string'
+      },
+      sum_one: {
+        title: 'Total Price',
+        type: 'Float'
       },
       // Column_4: {
       //   title: 'Project',
@@ -110,7 +118,7 @@ export class Order {
     // });
     this.service.getOrder().subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["_embedded"]["item"]);
+        this.source.load(res.json()["items"]);
     })
   }
 
