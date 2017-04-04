@@ -6,7 +6,7 @@ import { OrderService } from '../../shared/services/order.service'
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'order',
+  selector: 'Order List',
   templateUrl: './order.html',
 })
 
@@ -30,22 +30,22 @@ export class Order {
       confirmDelete: true
     },
     columns: {
-      Column_1: {
+      order_no: {
         title: 'Order No',
         type: 'string'
       },
-      Column_2: {
+      customer: {
         title: 'Client Code',
         type: 'string'
       },
-      Column_3: {
+      part_code: {
         title: 'Job Description',
         type: 'string'
       },
-      Column_4: {
-        title: 'Project',
-        type: 'string'
-      },
+      // Column_4: {
+      //   title: 'Project',
+      //   type: 'string'
+      // },
     }
   };
 
@@ -110,7 +110,7 @@ export class Order {
     // });
     this.service.getOrder().subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["items"]);
+        this.source.load(res.json()["_embedded"]["item"]);
     })
   }
 
