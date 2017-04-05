@@ -1,23 +1,18 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { OrderService } from '../../shared/services/order.service'
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
+import { OrderDetailService } from '../../shared/services/orderdetail.service'
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'Order List',
-  templateUrl: './order.html',
+  selector: 'Order Detail',
+  templateUrl: './orderdetail.html',
 })
 
-export class Order implements OnInit  {
+export class OrderDetail {
 
-  order: Order[];
-  selectedOrder: Order;
   query: string = '';
- 
 
   settings = {
     add: {
@@ -36,7 +31,7 @@ export class Order implements OnInit  {
     },
     columns: {
       order_code: {
-        title: 'Order ID',
+        title: 'Order detail',
         type: 'string'
       },
       customer_name: {
@@ -55,10 +50,6 @@ export class Order implements OnInit  {
         title: 'Total Price',
         type: 'Float'
       },
-      // Column_4: {
-      //   title: 'Project',
-      //   type: 'string'
-      // },
     }
   };
 
@@ -117,16 +108,14 @@ export class Order implements OnInit  {
 
   source: LocalDataSource = new LocalDataSource();
 
-    constructor( 
-      private router:Router, 
-      protected service: OrderService) {
+  constructor(protected service: OrderDetailService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    // this.service.getOrder().subscribe(res => {
-    //     //alert(JSON.stringify(res.json()));
-    //     this.source.load(res.json()["items"]);
-    // })
+    this.service.getOrderDetail().subscribe(res => {
+        //alert(JSON.stringify(res.json()));
+        this.source.load(res.json()["items"]);
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -137,24 +126,7 @@ export class Order implements OnInit  {
     }
   }
 
-  getOrder(): void {
-    this.OrderService.getOrder().then( => this.order = order);
-  }
-
-
-
-  onRowSelect(event): void{
-    var order_code;
-    order_code=event.data.order_code;
-    // export const routingDetail = RouterModule.forChild(routes);
-     this.router.navigate(['/orderdetail', order_code]);
-
-    
-  }
-  // onSelect(event) {
-  //   this.routingDetail.navigate(['/orderdetail', event.data.order_code]);
-  // }
- 
-
-
+	// getProduct(id: number) {
+        
+ //    }
 }

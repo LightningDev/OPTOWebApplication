@@ -2,7 +2,7 @@
 
   <div class="row">
     <ba-card title="Order List" baCardClass="with-scroll">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)" (click)="onSelect($event)"></ng2-smart-table>
     </ba-card>
   </div>
 

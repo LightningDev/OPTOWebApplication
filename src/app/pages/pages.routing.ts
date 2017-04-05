@@ -35,6 +35,7 @@ export const routes: Routes = [
 =======
 >>>>>>> Stashed changes
       { path: 'order', loadChildren: 'app/pages/order/order.module#OrderModule' },
+      { path: 'orderdetail/:id', loadChildren: 'app/pages/orderdetail/orderdetail.module#OrderDetailModule' },
       { path: 'materials', loadChildren: 'app/pages/materials/materials.module#MaterialsModule' }
 >>>>>>> origin/master
     ]

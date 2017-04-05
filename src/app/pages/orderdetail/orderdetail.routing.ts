@@ -1,20 +1,16 @@
 import { Routes, RouterModule }  from '@angular/router';
-import { Order } from './order.component';
-// import { OrderDetail } from '../orderdetail/orderdetail.component';
+import { OrderDetail } from './orderdetail.component';
 import { ModuleWithProviders } from '@angular/core';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: Order,
-  },
-  // {
-  //   path: '',
-  //   component: OrderDetail,
-   
-  // }
+    component: OrderDetail,
+    children: [
+      //{ path: 'treeview', component: TreeViewComponent }
+    ]
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
