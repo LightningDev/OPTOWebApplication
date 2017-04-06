@@ -15,10 +15,9 @@ export class OrderDetailService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getOrderDetail():Observable<Response>{
-
+  getOrderDetail(id):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/salesorder?part=`,
+      `${this.config.BASE_URL}/api/salesorder?web=1&=`+id,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)

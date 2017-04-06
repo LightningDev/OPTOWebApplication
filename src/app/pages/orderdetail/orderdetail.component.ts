@@ -2,7 +2,7 @@ import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { OrderDetailService } from '../../shared/services/orderdetail.service'
-
+import {Router,ActivatedRoute, Params} from '@angular/router';
 import 'style-loader!./smartTables.scss';
 
 @Component({
@@ -30,25 +30,29 @@ export class OrderDetail {
       confirmDelete: true
     },
     columns: {
-      order_code: {
-        title: 'Order detail',
+      ma: {
+        title: 'Discount',
         type: 'string'
       },
-      customer_name: {
-        title: 'Customer Name',
+      part_code_one: {
+        title: 'Part Code',
         type: 'string'
       },
-       customer: {
-        title: 'Customer ID',
-        type: 'string'
-      },
-       contact_name: {
-        title: 'Contact Name',
+      part_desc: {
+        title: 'Description',
         type: 'string'
       },
       sum_one: {
         title: 'Total Price',
-        type: 'Float'
+        type: 'string'
+      },
+      total_amount_one: {
+        title: 'Price',
+        type: 'string'
+      },
+      total_quantity_one: {
+        title: 'Quantity',
+        type: 'string'
       },
     }
   };
@@ -108,14 +112,21 @@ export class OrderDetail {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected service: OrderDetailService) {
+  constructor(
+    private router:Router,
+    private route:ActivatedRoute,
+    protected service:OrderDetailService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.service.getOrderDetail().subscribe(res => {
+
+    this.route.params.subscribe(params => {
+            this.id = +params['id'];});
+ 
+    this.service.getOrderDetail(this.id).subscribe(res => {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["items"]);
-    })
+    });
   }
 
   onDeleteConfirm(event): void {
@@ -126,7 +137,5 @@ export class OrderDetail {
     }
   }
 
-	// getProduct(id: number) {
-        
- //    }
+
 }

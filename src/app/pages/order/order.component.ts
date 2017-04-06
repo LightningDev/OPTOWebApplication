@@ -1,8 +1,8 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { OrderService } from '../../shared/services/order.service'
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+import {Router} from '@angular/router';
 
 
 import 'style-loader!./smartTables.scss';
@@ -10,12 +10,11 @@ import 'style-loader!./smartTables.scss';
 @Component({
   selector: 'Order List',
   templateUrl: './order.html',
+ 
 })
 
-export class Order implements OnInit  {
+export class Order {
 
-  order: Order[];
-  selectedOrder: Order;
   query: string = '';
  
 
@@ -119,14 +118,14 @@ export class Order implements OnInit  {
 
     constructor( 
       private router:Router, 
-      protected service: OrderService) {
+      protected service:OrderService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    // this.service.getOrder().subscribe(res => {
-    //     //alert(JSON.stringify(res.json()));
-    //     this.source.load(res.json()["items"]);
-    // })
+    this.service.getOrder().subscribe(res => {
+        //alert(JSON.stringify(res.json()));
+        this.source.load(res.json()["items"]);
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -137,24 +136,12 @@ export class Order implements OnInit  {
     }
   }
 
-  getOrder(): void {
-    this.OrderService.getOrder().then( => this.order = order);
-  }
-
-
 
   onRowSelect(event): void{
-    var order_code;
-    order_code=event.data.order_code;
-    // export const routingDetail = RouterModule.forChild(routes);
-     this.router.navigate(['/orderdetail', order_code]);
+    this.router.navigate(['pages/orderdetail', event.data.order_code]);
 
     
   }
-  // onSelect(event) {
-  //   this.routingDetail.navigate(['/orderdetail', event.data.order_code]);
-  // }
  
-
 
 }
