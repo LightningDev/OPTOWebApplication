@@ -27,8 +27,16 @@ export const routes: Routes = [
       { path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
       { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
       { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' },
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+      { path: 'materials', loadChildren: 'app/pages/materials/materials.module#MaterialsModule' },
+      { path: 'clients', loadChildren: 'app/pages/clients/clients.module#ClientsModule' },
+=======
+>>>>>>> Stashed changes
       { path: 'order', loadChildren: 'app/pages/order/order.module#OrderModule' },
       { path: 'materials', loadChildren: 'app/pages/materials/materials.module#MaterialsModule' }
+>>>>>>> origin/master
     ]
   }
 ];

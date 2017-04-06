@@ -348,6 +348,19 @@ export const PAGES_MENU = [
             order: 900
           }
         }
+      },
+      {
+        path: 'clients',
+        data: {
+          menu: {
+            title: 'Clients',
+            icon: 'ion-android-contacts',
+            pathMatch: 'details',
+            selected: false,
+            expanded: false,
+            order: 900
+          }
+        }
       }
     ]
   }

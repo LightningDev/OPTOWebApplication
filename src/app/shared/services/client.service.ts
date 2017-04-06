@@ -10,14 +10,14 @@ interface auth {
 
 @Injectable()
 
-export class MaterialService {
+export class ClientService {
 
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getMaterials():Observable<Response>{
+  getClients():Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1`,
+      `${this.config.BASE_URL}/api/clients?web=1`,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -26,9 +26,9 @@ export class MaterialService {
       }
     )
   }
-  getMaterialDetails(id: string):Observable<Response>{
+  getClientDetails(id: string):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,
+      `${this.config.BASE_URL}/api/clients?web=1&client=` + id ,
       {
         headers:new Headers({
           'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
