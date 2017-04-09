@@ -20,6 +20,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
+      { path: 'mobiledashboard', loadChildren: 'app/pages/mobiledashboard/mobiledashboard.module#MobileDashboardModule' },
       { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
       { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },

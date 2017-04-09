@@ -13,6 +13,7 @@ import 'style-loader!./smartTables.scss';
 export class OrderDetail {
 
   query: string = '';
+  public id:number;
 
   settings = {
     add: {
