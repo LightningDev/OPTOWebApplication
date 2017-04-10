@@ -1,18 +1,21 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
+
 import { MaterialService } from '../../shared/services/material.service'
+import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'materials',
-  templateUrl: './materials.html',
+  selector: 'materialslist',
+  templateUrl: './materialslist.html',
 })
 
-export class Materials {
+export class MaterialsList {
 
   query: string = '';
+  public id:number;
 
   settings = {
     add: {
@@ -29,27 +32,23 @@ export class Materials {
       deleteButtonContent: '<i class="ion-trash-a"></i>',
       confirmDelete: true
     },
-    columns: {
-      Column_1: {
-        title: 'Material Code',
+      columns: {
+      cash_p_m: {
+        title: 'Price',
         type: 'string'
       },
-      Column_2: {
+      description: {
         title: 'Description',
         type: 'string'
       },
-      Column_3: {
-        title: 'Part Group',
+      material_code: {
+        title: 'Material Code',
         type: 'string'
       },
-      Column_4: {
-        title: 'Material Group',
-        type: 'string'
-      },
-      Column_5: {
+      stock: {
         title: 'Stock',
-        type: 'number'
-      }
+        type: 'string'
+      },
     }
   };
 
@@ -108,14 +107,20 @@ export class Materials {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(protected service: MaterialService) {
+  constructor(
+    //private router:Router,
+    private route:ActivatedRoute,
+    protected service: MaterialService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.service.getMaterials().subscribe(res => {
+    this.route.params.subscribe(params => {
+            this.id = +params['id'];});
+
+    this.service.getMaterialList(this.id).subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["items"]);
-    })
+        this.source.load(res.json()["_embedded"]["materials"]);
+    });
   }
 
   onDeleteConfirm(event): void {

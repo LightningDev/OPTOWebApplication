@@ -1,19 +1,20 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { MaterialService } from '../../shared/services/material.service'
 
-import { OrderDetailService } from '../../shared/services/orderdetail.service'
-import {Router,ActivatedRoute, Params} from '@angular/router';
+import {Router} from '@angular/router';
+
+
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'Order Detail',
-  templateUrl: './orderdetail.html',
+  selector: 'Material Group',
+  templateUrl: './material.html',
 })
 
-export class OrderDetail {
+export class Material {
 
   query: string = '';
-  public id:number;
 
   settings = {
     add: {
@@ -31,30 +32,26 @@ export class OrderDetail {
       confirmDelete: true
     },
     columns: {
-      ma: {
-        title: 'Discount',
+      code: {
+        title: 'Material Group Code',
         type: 'string'
       },
-      part_code_one: {
-        title: 'Part Code',
-        type: 'string'
-      },
-      part_desc: {
+      description: {
         title: 'Description',
         type: 'string'
       },
-      sum_one: {
-        title: 'Total Price',
-        type: 'string'
-      },
-      total_amount_one: {
-        title: 'Price',
-        type: 'string'
-      },
-      total_qty: {
-        title: 'Quantity',
-        type: 'string'
-      },
+      // Column_3: {
+      //   title: 'Part Group',
+      //   type: 'string'
+      // },
+      // Column_4: {
+      //   title: 'Material Group',
+      //   type: 'string'
+      // },
+      // Column_5: {
+      //   title: 'Stock',
+      //   type: 'number'
+      // }
     }
   };
 
@@ -113,21 +110,15 @@ export class OrderDetail {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(
-    //private router:Router,
-    private route:ActivatedRoute,
-    protected service:OrderDetailService) {
+  constructor(private router:Router, 
+    protected service: MaterialService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-
-    this.route.params.subscribe(params => {
-            this.id = +params['id'];});
- 
-    this.service.getOrderDetail(this.id).subscribe(res => {
+    this.service.getMaterialGroup().subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["items"]);
-    });
+        this.source.load(res.json()["_embedded"]["item"]);
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -137,6 +128,8 @@ export class OrderDetail {
       event.confirm.reject();
     }
   }
-
-
+  onRowSelect(event): void{
+    debugger;
+    this.router.navigate(['pages/materialslist', event.data.code]);    
+  }
 }

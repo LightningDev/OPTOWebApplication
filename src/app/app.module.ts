@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+//import {BusyModule} from '@angular2-busy';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
@@ -37,7 +38,7 @@ export interface AppConfig {
 }
 
 export const APPCONFIG:AppConfig = {
-  BASE_URL: 'http://192.168.222.108:8000',
+  BASE_URL: 'http://192.168.222.109:8000',
   APP_ID: 'OPTO',
   APP_PASSWORD: 'opto',
 };
@@ -64,6 +65,7 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     PagesModule,
+    //BusyModule,
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

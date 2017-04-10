@@ -1,13 +1,13 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { Materials } from './materials.component';
+import { MaterialsList } from './materialslist.component';
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: Materials,
+    component: MaterialsList,
     children: [
       //{ path: 'treeview', component: TreeViewComponent }
     ]

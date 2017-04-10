@@ -15,9 +15,20 @@ export class MaterialService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getMaterials():Observable<Response>{
+    getMaterialCatalogue():Observable<Response>{
     return this.http.get(
       `${this.config.BASE_URL}/api/catalogue?web=1`,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+  getMaterialGroup():Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/matgroup`,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -26,6 +37,19 @@ export class MaterialService {
       }
     )
   }
+
+   getMaterialList(id):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/matgroup/`+id,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+
   getMaterialDetails(id: string):Observable<Response>{
     return this.http.get(
       `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,

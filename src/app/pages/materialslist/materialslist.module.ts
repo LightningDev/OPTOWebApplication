@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-import { routing } from './materials.routing';
-import { Materials } from './materials.component';
+import { routing } from './materialslist.routing';
+import { MaterialsList } from './materialslist.component';
 
 import { MaterialService } from '../../shared/services/material.service'
 
@@ -18,10 +18,10 @@ import { MaterialService } from '../../shared/services/material.service'
     routing
   ],
   declarations: [
-    Materials
+    MaterialsList
   ],
   providers: [
     MaterialService
   ]
 })
-export class MaterialsModule {}
+export class MaterialsListModule {}
