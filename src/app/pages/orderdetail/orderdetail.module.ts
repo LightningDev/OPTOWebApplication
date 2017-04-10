@@ -7,7 +7,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { routing } from './orderdetail.routing';
 import { OrderDetail } from './orderdetail.component';
 
-import { OrderDetailService } from '../../shared/services/orderdetail.service'
+import { OrderService } from '../../shared/services/order.service'
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { OrderDetailService } from '../../shared/services/orderdetail.service'
     OrderDetail
   ],
   providers: [
-    OrderDetailService
+    OrderService
   ]
 })
 export class OrderDetailModule {}

@@ -1,6 +1,6 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { MaterialService } from '../../shared/services/material.service'
+import { PartService } from '../../shared/services/part.service'
 
 import {Router} from '@angular/router';
 
@@ -8,11 +8,11 @@ import {Router} from '@angular/router';
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'Material Group',
-  templateUrl: './material.html',
+  selector: 'Part Group',
+  templateUrl: './part.html',
 })
 
-export class Material {
+export class Part {
 
   query: string = '';
 
@@ -111,11 +111,11 @@ export class Material {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private router:Router, 
-    protected service: MaterialService) {
+    protected service: PartService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.service.getMaterialGroup().subscribe(res => {
+    this.service.getPartGroup().subscribe(res => {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["_embedded"]["item"]);
     })
@@ -130,6 +130,6 @@ export class Material {
   }
   onRowSelect(event): void{
     debugger;
-    this.router.navigate(['pages/materialslist', event.data.code]);    
+    this.router.navigate(['pages/partlist', event.data.code]);    
   }
 }

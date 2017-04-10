@@ -5,6 +5,7 @@
     border: 1px solid $border-light !important;
     line-height: 35px;
     vertical-align: middle;
+    font-size: 14px !important;
   }
 
   color: $default-text;
@@ -20,7 +21,7 @@
   }
 
   a.ng2-smart-sort-link {
-    font-size: 14px !important;
+    font-size: 18px !important;
     color: $default-text;
     font-weight: $font-bolder;
     &.sort {
