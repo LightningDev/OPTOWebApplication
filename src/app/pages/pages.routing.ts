@@ -31,7 +31,10 @@ export const routes: Routes = [
 
       { path: 'material', loadChildren: 'app/pages/material/material.module#MaterialModule' },
       { path: 'materialslist/:id', loadChildren: 'app/pages/materialslist/materialslist.module#MaterialsListModule' },
-      //{ path: 'materialsdetail', loadChildren: 'app/pages/materialsdetail/materialsdetail.module#MaterialsDetailModule' },
+      { path: 'materialdetail/:id', loadChildren: 'app/pages/materialdetail/materialdetail.module#MaterialDetailModule' },
+      
+      //{ path: 'part', loadChildren: 'app/pages/part/part.module#PartModule' },
+
 
       { path: 'clients', loadChildren: 'app/pages/clients/clients.module#ClientsModule' },
 

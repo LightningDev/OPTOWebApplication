@@ -108,7 +108,7 @@ export class MaterialsList {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(
-    //private router:Router,
+    private router:Router,
     private route:ActivatedRoute,
     protected service: MaterialService) {
     // this.service.getData().then((data) => {
@@ -129,5 +129,9 @@ export class MaterialsList {
     } else {
       event.confirm.reject();
     }
+  }
+
+  onRowSelect(event): void{
+    this.router.navigate(['pages/materialdetail', event.data.material_code]); 
   }
 }

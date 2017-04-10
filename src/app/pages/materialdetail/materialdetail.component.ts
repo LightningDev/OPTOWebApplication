@@ -2,19 +2,20 @@ import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { MaterialService } from '../../shared/services/material.service'
 
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute, Params} from '@angular/router';
 
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'Material Group',
-  templateUrl: './material.html',
+  selector: 'Material Detail',
+  templateUrl: './materialdetail.html',
 })
 
-export class Material {
+export class MaterialDetail {
 
   query: string = '';
+  id:string ='';
 
   settings = {
     add: {
@@ -110,14 +111,20 @@ export class Material {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private router:Router, 
+  constructor(
+    //private router:Router, 
+    private route:ActivatedRoute,
     protected service: MaterialService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.service.getMaterialGroup().subscribe(res => {
+
+    this.route.params.subscribe(params => {
+            this.id = +params['id'];});
+
+    this.service.getMaterialDetails(this.code).subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["_embedded"]["item"]);
+        this.source.load(res.json()["items"]);
     })
   }
 
@@ -128,8 +135,8 @@ export class Material {
       event.confirm.reject();
     }
   }
-  onRowSelect(event): void{
-    //debugger;
-    this.router.navigate(['pages/materialslist', event.data.code]);    
-  }
+  // onRowSelect(event): void{
+  //   debugger;
+  //   this.router.navigate(['pages/materialslist', event.data.code]);    
+  // }
 }

@@ -129,7 +129,7 @@ export class Material {
     }
   }
   onRowSelect(event): void{
-    //debugger;
+    debugger;
     this.router.navigate(['pages/materialslist', event.data.code]);    
   }
 }
