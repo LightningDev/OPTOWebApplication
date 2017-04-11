@@ -10,14 +10,14 @@ interface auth {
 
 @Injectable()
 
-export class MaterialService {
+export class BinLocationService {
 
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getMaterials():Observable<Response>{
+  checkItemCode(id: string):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1`,
+      `${this.config.BASE_URL}/api/catalogue?web=1&barcode=` + id,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -26,9 +26,22 @@ export class MaterialService {
       }
     )
   }
-  getMaterialDetails(id: string):Observable<Response>{
+  checkLocationBin(id: string):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,
+      `${this.config.BASE_URL}/api/catalogue?web=1&bin=` + id ,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+
+  sendBinLocation(json: Object):Observable<Response>{
+    return this.http.post(
+      `${this.config.BASE_URL}/api/location`,
+      JSON.stringify(json),
       {
         headers:new Headers({
           'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
