@@ -1,21 +1,20 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { PartService } from '../../shared/services/part.service'
 
+import {Router} from '@angular/router';
 
-import { MaterialService } from '../../shared/services/material.service'
-import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'materialslist',
-  templateUrl: './materialslist.html',
+  selector: 'Part Group',
+  templateUrl: './part.html',
 })
 
-export class MaterialsList {
+export class Part {
 
   query: string = '';
-  public id:number;
 
   settings = {
     add: {
@@ -32,23 +31,27 @@ export class MaterialsList {
       deleteButtonContent: '<i class="ion-trash-a"></i>',
       confirmDelete: true
     },
-      columns: {
-      material_code: {
-        title: 'Material Code',
+    columns: {
+      code: {
+        title: 'Part Group Code',
         type: 'string'
       },
       description: {
         title: 'Description',
         type: 'string'
       },
-      cash_p_m: {
-        title: 'Price',
-        type: 'string'
-      },
-      stock: {
-        title: 'Stock',
-        type: 'string'
-      },
+      // Column_3: {
+      //   title: 'Part Group',
+      //   type: 'string'
+      // },
+      // Column_4: {
+      //   title: 'Material Group',
+      //   type: 'string'
+      // },
+      // Column_5: {
+      //   title: 'Stock',
+      //   type: 'number'
+      // }
     }
   };
 
@@ -107,20 +110,15 @@ export class MaterialsList {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(
-    private router:Router,
-    private route:ActivatedRoute,
-    protected service: MaterialService) {
+  constructor(private router:Router, 
+    protected service: PartService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.route.params.subscribe(params => {
-            this.id = +params['id'];});
-
-    this.service.getMaterialList(this.id).subscribe(res => {
+    this.service.getPartGroup().subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["_embedded"]["materials"]);
-    });
+        this.source.load(res.json()["_embedded"]["item"]);
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -130,8 +128,8 @@ export class MaterialsList {
       event.confirm.reject();
     }
   }
-
   onRowSelect(event): void{
-    this.router.navigate(['pages/materialdetail', event.data.material_code]); 
+    //debugger;
+    this.router.navigate(['pages/partlist', event.data.code]);    
   }
 }
