@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-import { routing } from './partlist.routing';
-import { PartList } from './partlist.component';
+import { routing } from './material.routing';
+import { Material } from './material.component';
 
-import { PartService } from '../../shared/services/part.service'
+import { MaterialService } from '../../shared/services/material.service'
 
 @NgModule({
   imports: [
@@ -18,10 +18,11 @@ import { PartService } from '../../shared/services/part.service'
     routing
   ],
   declarations: [
-    PartList
+    Material
   ],
   providers: [
-    PartService
+    MaterialService
   ]
 })
-export class PartListModule {}
+export class MaterialModule {}
+

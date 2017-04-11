@@ -33,16 +33,16 @@ export class MaterialsList {
       confirmDelete: true
     },
       columns: {
-      material_code: {
-        title: 'Material Code',
+      cash_p_m: {
+        title: 'Price',
         type: 'string'
       },
       description: {
         title: 'Description',
         type: 'string'
       },
-      cash_p_m: {
-        title: 'Price',
+      material_code: {
+        title: 'Material Code',
         type: 'string'
       },
       stock: {

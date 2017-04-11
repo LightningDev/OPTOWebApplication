@@ -122,7 +122,7 @@ export class MaterialDetail {
     this.route.params.subscribe(params => {
             this.id = +params['id'];});
 
-    this.service.getMaterialDetails(this.id).subscribe(res => {
+    this.service.getMaterialDetails(this.code).subscribe(res => {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["items"]);
     })

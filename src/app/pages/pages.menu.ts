@@ -26,18 +26,6 @@ export const PAGES_MENU = [
           }
         }
       },
-       {
-        path: 'part',
-        data: {
-          menu: {
-            title: 'Part',
-            icon: 'ion-android-home',
-            selected: false,
-            expanded: false,
-            order: 50
-          }
-        }
-      },
       // {
       //   path: 'editors',
       //   data: {

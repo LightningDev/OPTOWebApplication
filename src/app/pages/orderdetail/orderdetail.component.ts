@@ -1,7 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { OrderService } from '../../shared/services/order.service'
+import { OrderDetailService } from '../../shared/services/orderdetail.service'
 import {Router,ActivatedRoute, Params} from '@angular/router';
 import 'style-loader!./smartTables.scss';
 
@@ -116,7 +116,7 @@ export class OrderDetail {
   constructor(
     //private router:Router,
     private route:ActivatedRoute,
-    protected service:OrderService) {
+    protected service:OrderDetailService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });

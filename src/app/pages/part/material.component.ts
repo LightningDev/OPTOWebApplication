@@ -1,21 +1,20 @@
 import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { MaterialService } from '../../shared/services/material.service'
 
+import {Router} from '@angular/router';
 
-import { PartService } from '../../shared/services/part.service'
-import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'Part List',
-  templateUrl: './partlist.html',
+  selector: 'Material Group',
+  templateUrl: './material.html',
 })
 
-export class PartList {
+export class Material {
 
   query: string = '';
-  public id:number;
 
   settings = {
     add: {
@@ -32,33 +31,27 @@ export class PartList {
       deleteButtonContent: '<i class="ion-trash-a"></i>',
       confirmDelete: true
     },
-      columns: {
+    columns: {
       code: {
-        title: 'Part code',
+        title: 'Material Group Code',
         type: 'string'
       },
-      cust_part_no: {
-        title: 'Client part number',
-        type: 'string'
-      },
-      drawing_no: {
-        title: 'Drawing number',
-        type: 'string'
-      }, 
-      for_customer: {
-        title: 'Client code',
-        type: 'string'
-      },
-      part_description: {
+      description: {
         title: 'Description',
         type: 'string'
-      }, 
-      unit: {
-        title: 'Unit',
-        type: 'string'
       },
-   
-      
+      // Column_3: {
+      //   title: 'Part Group',
+      //   type: 'string'
+      // },
+      // Column_4: {
+      //   title: 'Material Group',
+      //   type: 'string'
+      // },
+      // Column_5: {
+      //   title: 'Stock',
+      //   type: 'number'
+      // }
     }
   };
 
@@ -117,20 +110,15 @@ export class PartList {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(
-    private router:Router,
-    private route:ActivatedRoute,
-    protected service: PartService) {
+  constructor(private router:Router, 
+    protected service: MaterialService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-    this.route.params.subscribe(params => {
-            this.id = +params['id'];});
-
-    this.service.getPartList(this.id).subscribe(res => {
+    this.service.getMaterialGroup().subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["items"]);
-    });
+        this.source.load(res.json()["_embedded"]["item"]);
+    })
   }
 
   onDeleteConfirm(event): void {
@@ -140,8 +128,8 @@ export class PartList {
       event.confirm.reject();
     }
   }
-
-  // onRowSelect(event): void{
-  //   this.router.navigate(['pages/partlist', event.data.code]); 
-  // }
+  onRowSelect(event): void{
+    debugger;
+    this.router.navigate(['pages/materialslist', event.data.code]);    
+  }
 }
