@@ -12,6 +12,7 @@ import * as GoogleMapsLoader from 'google-maps';
 
 @Component({
   selector: 'client-details',
+  styleUrls: ['./googleMaps.scss'],
   templateUrl: './clientdetails.html',
 })
 
