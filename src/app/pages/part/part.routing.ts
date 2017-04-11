@@ -1,12 +1,12 @@
 import { Routes, RouterModule }  from '@angular/router';
-import { Material } from './material.component';
+import { Part } from './part.component';
 import { ModuleWithProviders } from '@angular/core';
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
   {
     path: '',
-    component: Material,
+    component: Part,
   }
 ];
 
