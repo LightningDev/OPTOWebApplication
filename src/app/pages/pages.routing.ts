@@ -33,7 +33,9 @@ export const routes: Routes = [
       { path: 'materialslist/:id', loadChildren: 'app/pages/materialslist/materialslist.module#MaterialsListModule' },
       { path: 'materialdetail/:id', loadChildren: 'app/pages/materialdetail/materialdetail.module#MaterialDetailModule' },
       
-      //{ path: 'part', loadChildren: 'app/pages/part/part.module#PartModule' },
+      { path: 'part', loadChildren: 'app/pages/part/part.module#PartModule' },
+      { path: 'partlist/:id', loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
+      //{ path: 'partlist', loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
 
 
       { path: 'clients', loadChildren: 'app/pages/clients/clients.module#ClientsModule' },

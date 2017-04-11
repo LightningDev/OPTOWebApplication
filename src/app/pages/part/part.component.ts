@@ -33,7 +33,7 @@ export class Part {
     },
     columns: {
       code: {
-        title: 'Material Group Code',
+        title: 'Part Group Code',
         type: 'string'
       },
       description: {
@@ -129,7 +129,7 @@ export class Part {
     }
   }
   onRowSelect(event): void{
-    debugger;
+    //debugger;
     this.router.navigate(['pages/partlist', event.data.code]);    
   }
 }

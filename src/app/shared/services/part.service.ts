@@ -10,25 +10,15 @@ interface auth {
 
 @Injectable()
 
-export class MaterialService {
+export class PartService {
 
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-    getMaterialCatalogue():Observable<Response>{
+  
+  getPartGroup():Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1`,
-      {
-        headers:new Headers({
-          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
-          }
-        )
-      }
-    )
-  }
-  getMaterialGroup():Observable<Response>{
-    return this.http.get(
-      `${this.config.BASE_URL}/api/matgroup`,
+      `${this.config.BASE_URL}/api/partgroup`,
       {
       	headers:new Headers({
       		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -38,9 +28,9 @@ export class MaterialService {
     )
   }
 
-   getMaterialList(id):Observable<Response>{
+  getPartList(id):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/matgroup/`+id,
+      `${this.config.BASE_URL}/api/partgroup?web=1&group=`+id,
       {
         headers:new Headers({
           'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -50,15 +40,4 @@ export class MaterialService {
     )
   }
 
-  getMaterialDetails(id: string):Observable<Response>{
-    return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,
-      {
-        headers:new Headers({
-          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
-          }
-        )
-      }
-    )
-  }
 }

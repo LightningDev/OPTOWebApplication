@@ -2,17 +2,17 @@ import {Component, ElementRef} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 
-import { MaterialService } from '../../shared/services/material.service'
+import { PartService } from '../../shared/services/part.service'
 import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'materialslist',
-  templateUrl: './materialslist.html',
+  selector: 'Part List',
+  templateUrl: './partlist.html',
 })
 
-export class MaterialsList {
+export class PartList {
 
   query: string = '';
   public id:number;
@@ -33,22 +33,32 @@ export class MaterialsList {
       confirmDelete: true
     },
       columns: {
-      material_code: {
-        title: 'Material Code',
+      code: {
+        title: 'Part code',
         type: 'string'
       },
-      description: {
+      cust_part_no: {
+        title: 'Client part number',
+        type: 'string'
+      },
+      drawing_no: {
+        title: 'Drawing number',
+        type: 'string'
+      }, 
+      for_customer: {
+        title: 'Client code',
+        type: 'string'
+      },
+      part_description: {
         title: 'Description',
         type: 'string'
-      },
-      cash_p_m: {
-        title: 'Price',
+      }, 
+      unit: {
+        title: 'Unit',
         type: 'string'
       },
-      stock: {
-        title: 'Stock',
-        type: 'string'
-      },
+   
+      
     }
   };
 
@@ -110,16 +120,16 @@ export class MaterialsList {
   constructor(
     private router:Router,
     private route:ActivatedRoute,
-    protected service: MaterialService) {
+    protected service: PartService) {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
     this.route.params.subscribe(params => {
             this.id = +params['id'];});
 
-    this.service.getMaterialList(this.id).subscribe(res => {
+    this.service.getPartList(this.id).subscribe(res => {
         //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["_embedded"]["materials"]);
+        this.source.load(res.json()["items"]);
     });
   }
 
@@ -131,7 +141,7 @@ export class MaterialsList {
     }
   }
 
-  onRowSelect(event): void{
-    this.router.navigate(['pages/materialdetail', event.data.material_code]); 
-  }
+  // onRowSelect(event): void{
+  //   this.router.navigate(['pages/partlist', event.data.code]); 
+  // }
 }
