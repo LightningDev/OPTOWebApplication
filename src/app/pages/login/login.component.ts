@@ -43,7 +43,7 @@ export class Login {
           this.router.navigate(['pages']);
         }
         else if(res.status === 200 && this.stock.value){
-          this.router.navigate(['pages/mobiledashboard']);
+          this.router.navigate(['pages/location']);
         }
       })
     }

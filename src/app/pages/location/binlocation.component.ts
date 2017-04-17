@@ -34,7 +34,7 @@ export class BinLocation {
 			"action" : "0"
 		} 
 		this.service.sendBinLocation(json).subscribe(res => {
-    		//alert(res.json().message);
+    		alert(res.json().message);
 
     	})
 	}
@@ -49,7 +49,7 @@ export class BinLocation {
 
 		} 
 		this.service.sendBinLocation(json).subscribe(res => {
-    		//alert(res.json().message);
+    		alert(res.json().message);
     		
     	})
 	}
