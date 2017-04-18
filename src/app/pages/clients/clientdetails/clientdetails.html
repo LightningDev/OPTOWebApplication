@@ -124,4 +124,12 @@
   	<ba-card title="Google Maps">
 	  <div class="google-maps"></div>
 	</ba-card>
+
+	<ba-card title="Financial Chart">
+		<ba-chartist-chart baChartistChartClass="ct-chart"
+                           baChartistChartType="Line"
+                           [baChartistChartData]="data['simpleLineData']"
+                           [baChartistChartOptions]="data['simpleLineOptions']">
+        </ba-chartist-chart>
+	</ba-card>
 </div>

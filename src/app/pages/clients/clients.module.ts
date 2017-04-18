@@ -9,6 +9,7 @@ import { routing } from './clients.routing';
 import { Clients } from './clients.component';
 
 import { ClientService } from '../../shared/services/client.service';
+import { ChartistJsService } from './clientdetails/chartistJs.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ClientService } from '../../shared/services/client.service';
     ClientDetails
   ],
   providers: [
-    ClientService
+    ClientService,
+    ChartistJsService
   ]
 })
 export class ClientsModule {}

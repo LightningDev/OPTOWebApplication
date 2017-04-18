@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { ClientService } from '../../../shared/services/client.service';
+		
+import { ChartistJsService } from './chartistJs.service';
+import 'style-loader!./chartistJs.scss';
 
 import * as GoogleMapsLoader from 'google-maps';
 
@@ -18,12 +21,14 @@ import * as GoogleMapsLoader from 'google-maps';
 
 export class ClientDetails {
 
-	constructor(private route: ActivatedRoute, private location: Location, private service: ClientService, private _elementRef:ElementRef) {
+	data:any;
+
+	constructor(private route: ActivatedRoute, private location: Location, private service: ClientService, private _elementRef:ElementRef, private _chartistJsService:ChartistJsService) {
 		//loadMap();	
 	}
 
 	ngOnInit() {
-
+		this.data = this._chartistJsService.getAll();
 	}
 
 	ngAfterViewInit() {
@@ -51,7 +56,7 @@ export class ClientDetails {
 			
 			// Load Google Map
 			loadGoogleMap(el, address);
-		}
+		});
 	}
 
 	function loadGoogleMap(el, address) {
