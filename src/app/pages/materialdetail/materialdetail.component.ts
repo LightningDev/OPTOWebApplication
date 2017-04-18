@@ -15,7 +15,7 @@ import 'style-loader!./smartTables.scss';
 export class MaterialDetail {
 
   query: string = '';
-  id:string ='';
+  code: string ='';
 
   settings = {
     add: {
@@ -33,12 +33,21 @@ export class MaterialDetail {
       confirmDelete: true
     },
     columns: {
-      code: {
-        title: 'Material Group Code',
+      ID: {
+        title: 'Material ID',
+        type: 'string'
+      },
+      cash_p_m: {
+        title: 'Price',
         type: 'string'
       },
       description: {
         title: 'Description',
+        type: 'string'
+      },
+   
+      stock: {
+        title: 'Stock',
         type: 'string'
       },
       // Column_3: {
@@ -120,12 +129,22 @@ export class MaterialDetail {
     // });
 
     this.route.params.subscribe(params => {
-            this.id = +params['id'];});
+            this.code = params["code"];});
+debugger;
+    // this.service.getMaterialDetails(this.code).subscribe(res => {
+    //     //alert(JSON.stringify(res.json()));
+    //     this.source.load(res.json()["items"]);
+    //   });
 
-    this.service.getMaterialDetails(this.id).subscribe(res => {
-        //alert(JSON.stringify(res.json()));
-        this.source.load(res.json()["items"]);
-    })
+    this.service.getMaterialDetails(this.code).subscribe(res => {
+      this.inputMaterialID = res.json()["items"][0]["ID"];
+      this.inputMaterialDescription = res.json()["items"][0]["description"];
+      this.inputMaterialPrice = res.json()["items"][0]["cash_p_m"];
+      this.inputMaterialStock = res.json()["items"][0]["stock"];
+      debugger;
+     
+    });
+  
   }
 
   onDeleteConfirm(event): void {

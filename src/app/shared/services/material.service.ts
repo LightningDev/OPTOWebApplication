@@ -50,9 +50,9 @@ export class MaterialService {
     )
   }
 
-  getMaterialDetails(id: string):Observable<Response>{
+  getMaterialDetails(code):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,
+      `${this.config.BASE_URL}/api/catalogue?web=1&matcode=` + code ,
       {
         headers:new Headers({
           'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
