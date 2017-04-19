@@ -9,9 +9,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ClientService } from '../../../shared/services/client.service';
 		
 import { ChartistJsService } from './chartistJs.service';
+
 import 'style-loader!./chartistJs.scss';
 
 import * as GoogleMapsLoader from 'google-maps';
+
+import * as Chartist from 'chartist';
 
 @Component({
 	selector: 'client-details',
@@ -28,7 +31,35 @@ export class ClientDetails {
 	}
 
 	ngOnInit() {
-		this.data = this._chartistJsService.getAll();
+		this.route.params
+		.switchMap((params: Params) => this.service.getClientInvoices(params['id']))
+		.subscribe(res => {
+			var items = res.json()["items"];
+			var year1 = [];
+			var year2 = [];
+			var year3 = [];
+			var year4 = [];
+			var labels = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"];
+			for(var _i = 0; _i < items.length; _i++) {
+				let item = items[_i];
+				if (item["y"] == 1) {
+					year1.push(item["total"])
+				} else if (item["y"] == 2) {
+					year2.push(item["total"])
+				} else if (item["y"] == 3) {
+					year3.push(item["total"])
+				} else {
+					year4.push(item["total"])
+				}
+			}
+			var allYear = [year1, year2, year3, year4];
+			new Chartist.Bar('.ct-chart', {
+				labels: labels,
+				series: allYear
+			});
+
+		});
+		//this.data = this._chartistJsService.getAll();
 	}
 
 	ngAfterViewInit() {

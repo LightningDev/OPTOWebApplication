@@ -119,7 +119,6 @@ export class Clients {
   }
 
   onRowSelect(event): void {
-    debugger;
   	this.router.navigate(['pages/clients/details', event.data.client_code]); 
   }
 }

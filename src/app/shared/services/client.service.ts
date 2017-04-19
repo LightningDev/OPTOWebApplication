@@ -37,4 +37,16 @@ export class ClientService {
       }
     )
   }
+
+  getClientInvoices(id: string):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/clientInvoices?web=1&client=` + id ,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
 }
