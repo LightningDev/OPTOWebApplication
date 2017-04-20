@@ -53,7 +53,7 @@ export class ClientDetails {
 				}
 			}
 			var allYear = [year1, year2, year3, year4];
-			new Chartist.Bar('.ct-chart', {
+			new Chartist.Line('.ct-chart', {
 				labels: labels,
 				series: allYear
 			});
