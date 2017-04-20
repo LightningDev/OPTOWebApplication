@@ -40,4 +40,16 @@ export class PartService {
     )
   }
 
+  getPartByClientId(id):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/partgroup?web=1&client=` + id ,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+
 }

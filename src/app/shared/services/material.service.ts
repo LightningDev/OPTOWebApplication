@@ -50,9 +50,9 @@ export class MaterialService {
     )
   }
 
-  getMaterialDetails(code):Observable<Response>{
+  getMaterialDetails(id):Observable<Response>{
     return this.http.get(
-      `${this.config.BASE_URL}/api/catalogue?web=1&matcode=` + code ,
+      `${this.config.BASE_URL}/api/catalogue?web=1&matcode=` + id ,
       {
         headers:new Headers({
           'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -61,4 +61,18 @@ export class MaterialService {
       }
     )
   }
+
+  getMaterialByClientId(id):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/catalogue?web=1&client=` + id ,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+
+
 }

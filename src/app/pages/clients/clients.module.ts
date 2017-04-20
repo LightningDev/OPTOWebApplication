@@ -9,6 +9,10 @@ import { routing } from './clients.routing';
 import { Clients } from './clients.component';
 
 import { ClientService } from '../../shared/services/client.service';
+import { PartService } from '../../shared/services/part.service';
+import { OrderService } from '../../shared/services/order.service';
+import { MaterialService } from '../../shared/services/material.service';
+
 import { ChartistJsService } from './clientdetails/chartistJs.service';
 
 @NgModule({
@@ -25,6 +29,9 @@ import { ChartistJsService } from './clientdetails/chartistJs.service';
   ],
   providers: [
     ClientService,
+    PartService,
+    MaterialService,
+    OrderService,
     ChartistJsService
   ]
 })
