@@ -236,7 +236,6 @@ export class ClientDetails {
 
 ngOnInit() {
 	this.route.params
-	this.route.params
 	.switchMap((params: Params) => this.client_service.getClientInvoices(params['id']))
 	.subscribe(res => {
 		var items = res.json()["items"];
@@ -268,16 +267,32 @@ ngOnInit() {
 	this.route.params.subscribe(params => {
 			this.id = params['id'];});
 
+	
 	this.part_service.getPartByClientId(this.id).subscribe(res=> {
+		if(res.json()["items"][0]["code"]!=" "){
+			//console.log("abc");
 		this.source1.load(res.json()["items"]);
+		}else{
+			//console.log("xyz");
+		}
 	})
 
 	this.order_service.getOrderByClientId(this.id).subscribe(res=> {
+		if(res.json()["items"][0]["order_code"]!=" "){
+			//console.log("abc");
 		this.source2.load(res.json()["items"]);
+		}else{
+			//console.log("xyz");
+		}
 	})
 
-	this.material_service.getMaterialByClientId(this.id).subscribe(res=> {
+	this.material_service.getMaterialByClientId(this.id).subscribe(res => {
+		if(res.json()["items"][0]["ID"]!=" "){
+			//console.log("abc");
 		this.source3.load(res.json()["items"]);
+		}else{
+			//console.log("xyz");
+		}
 	})
 
 	
