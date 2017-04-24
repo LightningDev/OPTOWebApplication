@@ -42,6 +42,18 @@ export const PAGES_MENU = [
         path: 'location',
         data: {
           menu: {
+            title: 'Bin Location',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 50
+          }
+        }
+      },
+      {
+        path: 'stock',
+        data: {
+          menu: {
             title: 'Stock',
             icon: 'ion-android-home',
             selected: false,

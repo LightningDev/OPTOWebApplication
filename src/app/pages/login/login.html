@@ -19,10 +19,15 @@
         </div>
       </div>
         <div class="col-sm-10">
-         <div class="checkbox">
-              <input [formControl]="stock" type="checkbox" id="stock" value="">
+         <div class="radio">
+              <input [formControl]="binlocation" type="radio" id="binlocation" value="binlocation">
+              <span >BinLocation mode</span>
+          </div>
+          <div class="radio">
+              <input [formControl]="stock" type="radio" id="stock" value="stock">
               <span >Stock mode</span>
           </div>
+
           
         </div>
     

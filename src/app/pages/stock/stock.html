@@ -1,0 +1,81 @@
+<div class="widgets">
+	<div>
+		<ba-card title="Stock Details" baCardClass="with-scroll">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="form-group">
+						
+						<label>Division</label>
+						  <div class="dropdown">
+						    <button class="btn btn-default btn-mm dropdown-toggle" type="button" data-toggle="dropdown">Division
+						    <span class="caret"></span></button>
+						    <ul class="dropdown-menu" >
+						      <li><a href="#">Normal</a></li>
+						      <li class="disabled"><a href="#">Disabled</a></li>
+						      <li class="active"><a href="#">Active</a></li>
+						      <li><a href="#">Normal</a></li>
+						    </ul>
+						  </div>
+						<!-- <input type="text" class="form-control" id="inputDivision" placeholder="Division" [(ngModel)]="inputDivision"> -->
+					</div>
+				</div>
+				<div class="col-sm-10">
+					<div class="form-group">
+						<label for="inputEMP">EMP</label>
+						<input type="text" class="form-control" id="inputEMP" placeholder="EMP" [(ngModel)]="inputEMP">
+					</div>
+				</div>
+			</div>
+			<div class="input-demo radio-demo row">
+			    <div class="col-md-4">
+			      <label class="radio-inline custom-radio nowrap">
+			        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+			        <span>Stock In/Out</span>
+			      </label>
+			    </div>
+			    <div class="col-md-4">
+			      <label class="radio-inline custom-radio nowrap">
+			        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+			        <span>Stock Adjustment</span>
+			      </label>
+			    </div>
+			    <div class="col-md-4">
+			      <label class="radio-inline custom-radio nowrap">
+			        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+			        <span>Stock Take</span>
+			      </label>
+			    </div>
+			  </div>
+
+			<div class="form-group">
+				<label for="inputBarcode">Barcode</label>
+				<input type="text" class="form-control" id="inputBarcode" placeholder="Barcode" [(ngModel)]="inputBarcode">
+			</div>
+			<div class="form-group">
+				<label for="inputOnHand">On Hand</label>
+				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" [(ngModel)]="inputOnHand">
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<div class="button-wrapper">
+						<button type="button" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">IN</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<div class="button-wrapper">
+							<button type="button" class="btn btn-danger btn-lg button-full-width" (click)="button_OUT($event)">OUT</button>
+						</div>
+					</div>
+				</div>
+			</div>  
+
+		</ba-card>
+	</div>
+</div>
+
+
