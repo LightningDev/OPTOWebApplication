@@ -29,19 +29,19 @@
 			<div class="input-demo radio-demo row">
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+						<input [formControl]="stockInOut" type="radio" id="stockInOut" value="true" checked>
 						<span>Stock In/Out</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+						<input [formControl]="stockAdjustment" type="radio" id="stockAdjustment" value="true">
 						<span>Stock Adjustment</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+						<input [formControl]="stockTake" type="radio" id="stockTake" value="true">
 						<span>Stock Take</span>
 					</label>
 				</div>
@@ -49,15 +49,15 @@
 
 			<div class="form-group">
 				<label for="inputBarcode">Barcode</label>
-				<input type="text" class="form-control" id="inputBarcode" placeholder="Barcode" [(ngModel)]="inputBarcode">
+				<input type="text" class="form-control" id="inputBarcode" placeholder="Barcode" >
 			</div>
 			<div class="form-group">
 				<label for="inputOnHand">Current</label>
-				<input type="text" class="form-control" id="inputOnHand" placeholder="Current" [(ngModel)]="inputOnHand">
+				<input type="text" class="form-control" id="inputOnHand" placeholder="Current" >
 			</div>
 			<div class="form-group">
 				<label for="inputOnHand">On Hand</label>
-				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" [(ngModel)]="inputOnHand">
+				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" >
 			</div>
 		
 					<div class="form-group">
