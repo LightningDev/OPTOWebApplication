@@ -269,7 +269,7 @@ ngOnInit() {
 
 	
 	this.part_service.getPartByClientId(this.id).subscribe(res=> {
-		if(res.json()["items"][0]["code"]!=" "){
+		if(res.json()!=" "){
 			//console.log("abc");
 		this.source1.load(res.json()["items"]);
 		}else{
@@ -278,7 +278,7 @@ ngOnInit() {
 	})
 
 	this.order_service.getOrderByClientId(this.id).subscribe(res=> {
-		if(res.json()["items"][0]["order_code"]!=" "){
+		if(res.json()!=" "){
 			//console.log("abc");
 		this.source2.load(res.json()["items"]);
 		}else{
@@ -287,7 +287,7 @@ ngOnInit() {
 	})
 
 	this.material_service.getMaterialByClientId(this.id).subscribe(res => {
-		if(res.json()["items"][0]["ID"]!=" "){
+		if(res.json()!=" "){
 			//console.log("abc");
 		this.source3.load(res.json()["items"]);
 		}else{
