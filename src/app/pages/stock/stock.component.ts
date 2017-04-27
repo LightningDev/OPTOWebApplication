@@ -16,25 +16,40 @@ import {AuthService} from "../../shared/services/auth.service";
 export class Stock {
 
 	public form:FormGroup;
+
+	// public inputBarcode:string = '';
+	// public inputCurrent:number;
+	// public inputOnHand:number;
+
+	public division:Object;
+
 	public stockTake:boolean = false;
 	public stockInOut:boolean = false;
 	public stockAdjustment:boolean = false;
 
 	@ViewChild('childModal') childModal: ModalDirective;
 
-	constructor(fb:FormBuilder, private auth: AuthService, private router:Router) {
+	constructor(fb:FormBuilder, private auth: AuthService, private router:Router, private stockservice:StockService) {
     this.form = fb.group({
       'stockTake': false,
       'stockInOut': false
       'stockAdjustment': false
     });
 
+    this.stockservice.getDivision().subscribe(res => {
+        //alert(JSON.stringify(res.json()));
+        this.divisions = res.json()["items"];
+        // console.log(this.divisions);
+        // debugger;
+    })
     this.stockTake = this.form.controls['stockTake'];
     this.stockInOut = this.form.controls['stockInOut'];
     this.stockAdjustment = this.form.controls['stockAdjustment'];
-  }
+  	}
 
+  	currentSelect(event): string{
 
+  	}
 	// showChildModal(): void {
 	// 	this.childModal.show();
 	// }

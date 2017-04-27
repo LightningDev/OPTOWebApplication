@@ -1,71 +1,75 @@
 <div class="widgets">
 	<div>
 		<ba-card title="Stock Details" baCardClass="with-scroll">
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="form-group">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<div *ngIf="divisions">
+							 <select class="btn btn-default btn-xm dropdown-toggle" type="button"><span class="caret"></span>
+							 	<option [value]=''>Division not chosen</option>
+				                <option *ngFor="let division of divisions" [value]="division">{{division.description}}</option>
+				            </select>
 
-					<label>Division</label>
-					<div class="dropdown">
-						<button class="btn btn-default btn-mm dropdown-toggle" type="button" data-toggle="dropdown">Division
-							<span class="caret"></span></button>
-							<ul class="dropdown-menu" >
-								<li><a href="#">Normal</a></li>
-								<li class="disabled"><a href="#">Disabled</a></li>
-								<li class="active"><a href="#">Active</a></li>
-								<li><a href="#">Normal</a></li>
-							</ul>
+								<!-- <ul class="dropdown-menu" >
+									<li *ngFor="let division of divisions"><a href="#">{{division.description}}</a></li>
+								</ul> -->
 						</div>
-						<!-- <input type="text" class="form-control" id="inputDivision" placeholder="Division" [(ngModel)]="inputDivision"> -->
 					</div>
 				</div>
-				<div class="col-sm-10">
+				<div class="col-md-4">	
 					<div class="form-group">
-						<label for="inputEMP">EMP</label>
-						<input type="text" class="form-control" id="inputEMP" placeholder="EMP" [(ngModel)]="inputEMP">
+						<div *ngIf="divisions">
+							 <select class="btn btn-default btn-xm dropdown-toggle" type="button"><span class="caret"></span>
+							 	<option [value]=''>Employee not chosen</option>
+				                <option *ngFor="let division of divisions" [value]="division">{{division.description}}</option>
+				            </select>
+
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="input-demo radio-demo row">
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockInOut" type="radio" id="stockInOut" value="true" checked>
+						<input [formControl]="stockInOut" type="radio" id="stockInOut" value="stockInOut" checked>
 						<span>Stock In/Out</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockAdjustment" type="radio" id="stockAdjustment" value="true">
+						<input [formControl]="stockAdjustment" type="radio" id="stockAdjustment" value="stockAdjustment">
 						<span>Stock Adjustment</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockTake" type="radio" id="stockTake" value="true">
+						<input [formControl]="stockTake" type="radio" id="stockTake" value="stockTake">
 						<span>Stock Take</span>
 					</label>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label for="inputBarcode">Barcode</label>
-				<input type="text" class="form-control" id="inputBarcode" placeholder="Barcode" >
-			</div>
-			<div class="form-group">
-				<label for="inputOnHand">Current</label>
-				<input type="text" class="form-control" id="inputOnHand" placeholder="Current" >
-			</div>
-			<div class="form-group">
-				<label for="inputOnHand">On Hand</label>
-				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" >
-			</div>
-		
-					<div class="form-group">
-						<div class="button-wrapper">
-							<button type="button" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">Process</button>
-						</div>
-					</div>
+			<div class="col-xl-10">
 				
+				<div class="form-group">
+					<label for="inputBarcode">Barcode</label>
+					<input type="text" class="form-control" id="inputBarcode" placeholder="Barcode" >
+				</div>
+				<div class="form-group">
+					<label for="inputCurrent">Current</label>
+					<input type="text" class="form-control" id="inputCurrent" placeholder="Current" >
+				</div>
+				<div class="form-group">
+					<label for="inputOnHand">On Hand</label>
+					<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" >
+				</div>
+
+				<div class="form-group">
+					<div class="button-wrapper">
+						<button type="button" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">Process</button>
+					</div>
+				</div>
+			</div>
+
 		</ba-card>
 	</div>
 </div>

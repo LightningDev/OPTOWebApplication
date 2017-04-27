@@ -15,16 +15,17 @@ export class StockService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  // checkItemCode(id: string):Observable<Response>{
-  //   return this.http.get(
-  //     `${this.config.BASE_URL}/api/catalogue?web=1&barcode=` + id,
-  //     {
-  //     	headers:new Headers({
-  //     		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
-  //     		}
-  //     	)
-  //     }
-  //   )
+  getDivision(id: string):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/division?web=1`,
+      {
+      	headers:new Headers({
+      		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+      		}
+      	)
+      }
+    )
+  }
   // }
   // checkLocationBin(id: string):Observable<Response>{
   //   return this.http.get(
