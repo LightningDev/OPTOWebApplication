@@ -10,7 +10,7 @@ interface auth {
 
 @Injectable()
 
-export class StockService {
+export class DivisionService {
 
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }

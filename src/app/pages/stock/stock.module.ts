@@ -3,7 +3,9 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { StockService } from '../../shared/services/stock.service';
+import { DivisionService } from '../../shared/services/division.service';
+import { EmployeeService } from '../../shared/services/employee.service';
+import { MaterialService } from '../../shared/services/material.service';
 
 import { routing } from './stock.routing';
 import { Stock } from './stock.component';
@@ -22,7 +24,9 @@ import { Stock } from './stock.component';
     Stock
   ],
   providers: [
-    StockService
+    DivisionService,
+    EmployeeService,
+    MaterialService
   ]
 })
 export class StockModule {}
