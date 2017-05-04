@@ -21,11 +21,10 @@ export const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
       { path: 'location', loadChildren: 'app/pages/location/binlocation.module#BinLocationModule' },
-      { path: 'stock', loadChildren: 'app/pages/stock/stock.module#StockModule' },
-       { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
-       { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
+      // { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
+      // { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
       // { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },
-       { path: 'ui', loadChildren: 'app/pages/ui/ui.module#UiModule' },
+      // { path: 'ui', loadChildren: 'app/pages/ui/ui.module#UiModule' },
       { path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
       // { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
       // { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' },
@@ -37,10 +36,11 @@ export const routes: Routes = [
       { path: 'part', loadChildren: 'app/pages/part/part.module#PartModule' },
       { path: 'partlist/:id', loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
       //{ path: 'partlist', loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
-
-
+      { path: 'stock', loadChildren: 'app/pages/stock/stock.module#StockModule'},
+      { path: 'clocktiles', loadChildren: 'app/pages/clocktiles/clocktiles.module#ClockTilesModule'},
+      { path: 'productiontiles', loadChildren: 'app/pages/productiontiles/productiontiles.module#ProductionTilesModule'},
       { path: 'clients', loadChildren: 'app/pages/clients/clients.module#ClientsModule' },
-
+      { path: 'suppliers', loadChildren: 'app/pages/suppliers/suppliers.module#SuppliersModule' },
       { path: 'order', loadChildren: 'app/pages/order/order.module#OrderModule' },
       { path: 'orderdetail/:id', loadChildren: 'app/pages/orderdetail/orderdetail.module#OrderDetailModule' },
    

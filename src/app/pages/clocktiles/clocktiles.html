@@ -1,0 +1,20 @@
+<router-outlet></router-outlet>
+<div class="widgets">
+
+	<div *ngFor='let clock of clocks | async'>
+		<div class="col-md-4">
+			<ba-card title={{clock.employee}} style="text-align:center;">
+				<div class="row">
+					<label>{{clock.job_no}}</label>
+				</div>
+				<div class="row">
+					<label>{{clock.status}}</label>
+				</div>
+				<div class="button-wrapper">
+					<button type="button" class="btn btn-success btn-lg button-full-width" (click)="button_details($event)">Details</button>
+				</div>
+			</ba-card>
+		</div>
+	</div>
+
+</div>

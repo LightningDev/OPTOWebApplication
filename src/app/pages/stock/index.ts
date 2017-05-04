@@ -1,1 +1,1 @@
-export * from './stock.component';
+export * from './binlocation.component';

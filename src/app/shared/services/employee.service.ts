@@ -15,7 +15,7 @@ export class EmployeeService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getEmployee(id: string):Observable<Response>{
+  getEmployees():Observable<Response>{
     return this.http.get(
       `${this.config.BASE_URL}/api/employee?web=1`,
       {

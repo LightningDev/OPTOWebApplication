@@ -1,0 +1,19 @@
+<router-outlet></router-outlet>
+<div class="widgets">
+
+	<div *ngFor='let production of productions | async'>
+		<div class="col-md-4">
+			<ba-card title={{production.client_code}} style="text-align:center;">
+			
+				<div class="row">
+					<label>Client Order No: {{production.client_order_no}}</label>
+				</div>
+				<div class="row">
+					<label>{{production.status}}</label>
+				</div>
+
+			</ba-card>
+		</div>
+	</div>
+
+</div>

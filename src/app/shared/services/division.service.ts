@@ -15,7 +15,7 @@ export class DivisionService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getDivision(id: string):Observable<Response>{
+  getDivisions():Observable<Response>{
     return this.http.get(
       `${this.config.BASE_URL}/api/division?web=1`,
       {
