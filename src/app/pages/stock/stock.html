@@ -4,23 +4,22 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<div *ngIf="divisions">
-							 <select class="btn btn-default btn-xm dropdown-toggle" type="button"><span class="caret"></span>
-							 	<option [value]=''>Division not chosen</option>
-				                <option *ngFor="let division of divisions" [value]="division">{{division.description}}</option>
+						<label for="divisionCode">Division</label>
+						<div *ngIf="divisionsList">
+							 <select [(ngModel)]="divisionCode" class="btn btn-default btn-xm dropdown-toggle" type="string">
+							 	<option [value]="undefined"> None Division</option>
+				                <option *ngFor="let division of divisionsList" [value]="division.code">{{division.description}}</option>
 				            </select>
-
-								<!-- <ul class="dropdown-menu" >
-									<li *ngFor="let division of divisions"><a href="#">{{division.description}}</a></li>
-								</ul> -->
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">	
 					<div class="form-group">
-						<div *ngIf="employees">
-							 <select class="btn btn-default btn-xm dropdown-toggle" type="button" ><span class="caret"></span>
-				                <option *ngFor="let employee of employees" [value]="employee">{{employee.name}}</option>
+						<label for="employeeCode">Employee</label><font color="#993333"> {{empNoti}}</font>
+						<div *ngIf="employeeList">
+							 <select [(ngModel)]="employeeCode" class="btn btn-default btn-xm dropdown-toggle" type="string">
+							 	<option [value]="undefined"> Please select an employee</option>
+				                <option *ngFor="let employee of employeeList" [value]="employee.code">{{employee.name}}</option>
 				            </select>
 
 						</div>
@@ -28,21 +27,22 @@
 				</div>
 			</div>
 			<div class="input-demo radio-demo row">
+				<label for="stockType">Stock Type</label><font color="#993333"> {{stockNoti}}</font>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockInOut" type="radio" id="stockInOut" value="stockInOut" [checked]="true">
+						<input [formControl]="stockInOut" type="radio" name="stock" value="stockInOut">
 						<span>Stock In/Out</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockAdjustment" type="radio" id="stockAdjustment" value="stockAdjustment">
+						<input [formControl]="stockAdjustment" type="radio" name="stock" value="stockAdjustment">
 						<span>Stock Adjustment</span>
 					</label>
 				</div>
 				<div class="col-md-4">
 					<label class="radio-inline custom-radio nowrap">
-						<input [formControl]="stockTake" type="radio" id="stockTake" value="stockTake">
+						<input [formControl]="stockTake" type="radio" name="stock" value="stockTake">
 						<span>Stock Take</span>
 					</label>
 				</div>
@@ -69,7 +69,7 @@
 
 				<div class="form-group">
 					<div class="button-wrapper">
-						<button type="button" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">Process</button>
+						<button type="button" class="btn btn-success btn-lg button-full-width" (click)="process($event)">Process</button>
 					</div>
 				</div>
 			</div>
