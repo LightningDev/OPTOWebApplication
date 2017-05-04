@@ -16,6 +16,7 @@ export class Login {
   public form:FormGroup;
   public email:AbstractControl;
   public password:AbstractControl;
+  public binlocation:boolean = false;
   public stock:boolean = false;
   public submitted:boolean = false;
 
@@ -23,11 +24,13 @@ export class Login {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'binlocation': false,
       'stock': false
     });
 
     this.email = this.form.controls['email'];
     this.password = this.form.controls['password'];
+    this.binlocation = this.form.controls['binlocation'];
     this.stock = this.form.controls['stock'];
   }
 
@@ -39,11 +42,15 @@ export class Login {
        // console.log(values);
        // debugger;
       this.auth.login().subscribe(res =>{
-        if(res.status === 200 && this.stock.value ==false){
-          this.router.navigate(['pages']);
+        
+        if(res.status === 200 && this.stock.value){
+          this.router.navigate(['pages/stock']);
         }
-        else if(res.status === 200 && this.stock.value){
+        else if(res.status === 200 && this.binlocation.value){
           this.router.navigate(['pages/location']);
+        }
+        else if(res.status === 200 && this.binlocation.value ==false){
+          this.router.navigate(['pages']);
         }
       })
     }
