@@ -21,6 +21,7 @@ export class Stock {
 	currentRadio: String;
 	currentDivision: String;
 	currentEmployee: String;
+	noti: String = '';
 
 	constructor(private divService: DivisionService, private empService: EmployeeService, private binlocationService: BinLocationService, private _elementRef : ElementRef) {
 		
@@ -37,15 +38,23 @@ export class Stock {
 	}
 
 	detectBarcode(event) {
-		this.binlocationService.checkItemCode(event.currentTarget.value).subscribe(res => {
-			if (res.json() != "{}") {
-				let matcode = res.json()["material_code"];
-				if (matcode != "") {
-					$("#inputCode").val(matcode);
-					$("#inputOnHand").focus();
+		if($("#inputBarcode").val()!=""){
+			this.binlocationService.checkItemCode(event.currentTarget.value).subscribe(res => {
+				if (res.json() != '') {
+					let matcode = res.json()["material_code"];
+					if (matcode != null) {
+						$("#inputCode").val(matcode);
+						$("#inputOnHand").focus();
+					}else{
+						this.noti = ("Wrong Barcode. Please try again !");
+						return;
+					}
 				}
-			}
-		})
+			})
+		}else{
+			this.noti = ("Please input the Barcode");
+			return;
+		}
 	}
 
 	process(event) {
