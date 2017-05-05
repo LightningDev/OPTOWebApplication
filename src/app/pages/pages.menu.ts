@@ -2,7 +2,7 @@ export const PAGES_MENU = [
   {
     path: 'pages',
     children: [
-      {
+      /*{
         path: 'dashboard',
         data: {
           menu: {
@@ -13,13 +13,13 @@ export const PAGES_MENU = [
             order: 0
           }
         }
-      },
+      },*/
       {
         path: 'order',
         data: {
           menu: {
             title: 'Order',
-            icon: 'ion-android-home',
+            icon: 'ion-ios-cart',
             selected: false,
             expanded: false,
             order: 50
@@ -31,7 +31,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Part',
-            icon: 'ion-android-home',
+            icon: 'ion-wrench',
             selected: false,
             expanded: false,
             order: 50
@@ -43,7 +43,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Location',
-            icon: 'ion-android-home',
+            icon: 'ion-ios-box',
             selected: false,
             expanded: false,
             order: 50
@@ -55,7 +55,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Stock',
-            icon: 'ion-android-home',
+            icon: 'ion-cube',
             selected: false,
             expanded: false,
             order: 900
@@ -67,7 +67,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Material',
-            icon: 'ion-android-home',
+            icon: 'ion-pricetag',
             selected: false,
             expanded: false,
             order: 900
@@ -79,7 +79,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Clients',
-            icon: 'ion-android-contacts',
+            icon: 'ion-android-contact',
             pathMatch: 'details',
             selected: false,
             expanded: false,
@@ -105,7 +105,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Clock Tiles',
-            icon: 'ion-android-contacts',
+            icon: 'ion-ios-clock',
             selected: false,
             expanded: false,
             order: 900
@@ -117,7 +117,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Production Tiles',
-            icon: 'ion-android-contacts',
+            icon: 'ion-clipboard',
             selected: false,
             expanded: false,
             order: 900

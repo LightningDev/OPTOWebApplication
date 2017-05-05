@@ -59,12 +59,17 @@ export class Stock {
 	}
 
 	process(event) {
-		alert($("#select_divisions").val() + " " + $("#select_employees").val() + " " + $("#stockInOut").val() + " " + + $("#inputOnHand").val());
-		$("#inputBarcode").focus();
-		$("#inputBarcode").val('');
-		$("#inputCode").val('');
-		$("#inputOnHand").val('');
-		
+		//alert($("#select_divisions").val() + " " + $("#select_employees").val() + " " + $("#stockInOut").val() + " " + + $("#inputOnHand").val());
+
+		if ($("#stockInOut").val() != "" && $("#inputOnHand").val() != "" && $("#inputBarcode").val() != "" && $("#inputCode").val() != "") {
+			alert("Done");	
+			$("#inputBarcode").focus();
+			$("#inputBarcode").val('');
+			$("#inputCode").val('');
+			$("#inputOnHand").val('');
+		} else {
+			alert("Please fill in all information");
+		}
 	}
 
 }

@@ -34,6 +34,7 @@ export class ClientDetails {
 
 	data:any;
 	query: string = '';
+	id: string;
 
 	settings1 = {
 		add: {
@@ -266,7 +267,8 @@ ngOnInit() {
 	});
 
 	this.route.params.subscribe(params => {
-			this.id = params['id'];});
+		this.id = params['id'];
+	});
 
 	this.part_service.getPartByClientId(this.id).subscribe(res=> {
 		this.source1.load(res.json()["items"]);
