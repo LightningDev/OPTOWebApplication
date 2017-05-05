@@ -39,6 +39,7 @@ export class Stock {
 
 	detectBarcode(event) {
 		if($("#inputBarcode").val()!=""){
+			this.noti = ("");
 			this.binlocationService.checkItemCode(event.currentTarget.value).subscribe(res => {
 				if (res.json() != '') {
 					let matcode = res.json()["material_code"];
@@ -59,6 +60,11 @@ export class Stock {
 
 	process(event) {
 		alert($("#select_divisions").val() + " " + $("#select_employees").val() + " " + $("#stockInOut").val() + " " + + $("#inputOnHand").val());
+		$("#inputBarcode").focus();
+		$("#inputBarcode").val('');
+		$("#inputCode").val('');
+		$("#inputOnHand").val('');
+		
 	}
 
 }

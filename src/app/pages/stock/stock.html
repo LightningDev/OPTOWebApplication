@@ -84,7 +84,7 @@
 			</div>
 			<div class="form-group">
 				<label for="inputOnHand">On Hand</label>
-				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" [(ngModel)]="inputOnHand">
+				<input type="text" class="form-control" id="inputOnHand" placeholder="On Hand" (keyup.enter)="process($event)"  [(ngModel)]="inputOnHand">
 			</div>
 
 			<div class="form-group">
