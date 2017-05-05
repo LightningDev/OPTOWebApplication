@@ -58,7 +58,7 @@ export class Stock {
 	}
 
 	process(event) {
-		alert($("#select_divisions").val() + " " + $("#select_employees").val() + " " + $("#stockInOut").val());
+		alert($("#select_divisions").val() + " " + $("#select_employees").val() + " " + $("#stockInOut").val() + " " + + $("#inputOnHand").val());
 	}
 
 }
