@@ -16,6 +16,7 @@ export class Login {
   public form:FormGroup;
   public email:AbstractControl;
   public password:AbstractControl;
+  public binlocation:boolean = false;
   public stock:boolean = false;
   public submitted:boolean = false;
 
