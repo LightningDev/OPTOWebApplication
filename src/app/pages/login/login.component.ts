@@ -16,9 +16,8 @@ export class Login {
   public form:FormGroup;
   public email:AbstractControl;
   public password:AbstractControl;
-  public binlocation:boolean = false;
-  public stock:boolean = false;
-  public submitted:boolean = false;
+  public binlocation:AbstractControl;
+  public stock:AbstractControl;
 
   constructor(fb:FormBuilder, private auth: AuthService, private router:Router) {
     this.form = fb.group({
@@ -34,22 +33,21 @@ export class Login {
     this.stock = this.form.controls['stock'];
   }
 
-  public onSubmit(values:Object):void {
-    this.submitted = true;
-    if (this.form.valid) {
-      // your code goes here
+    
 
-       // console.log(values);
-       // debugger;
+  public onSubmit(values:Object):void {
+    if (this.form.valid) {
       this.auth.login().subscribe(res =>{
           if(res.status === 200 && this.stock.value){
             this.router.navigate(['pages/stock']);
            }
           else if(res.status === 200 && this.binlocation.value){
-             this.router.navigate(['pages/location']);
+            this.router.navigate(['pages/location']);
            }
           else if(res.status === 200 && this.binlocation.value ==false){
-             this.router.navigate(['pages']);
+            this.router.navigate(['pages']);
+          }else{
+            this.router.navigate(['pages/login']);
           }
        })
 

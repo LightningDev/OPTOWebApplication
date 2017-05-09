@@ -26,6 +26,21 @@ import * as Chartist from 'chartist';
 
 export class SupplierDetails {
 
+	inputSupplierCode:string;
+	inputSupplierName:string;
+	inputEmail:string;
+	inputWebsite:string;
+	inputPostalAddress1:string;
+	inputDeliveryAddress1:string;
+	inputPostalAddress2:string;
+	inputDeliveryAddress2:string;
+	inputPostalCity:string;
+	inputDeliveryCity:string;
+	inputPostalState:string;
+	inputDeliveryState:string;
+	inputPostalPostcode:string;
+	inputDeliveryPostcode:string;
+	
 	data:any;
 
 	settings1 = {
@@ -100,7 +115,7 @@ export class SupplierDetails {
 			order_code: {
 				title: 'Order Code',
 				type: 'string',
-			}
+			},
 			sum_one: {
 				title: 'Price',
 				type: 'string',

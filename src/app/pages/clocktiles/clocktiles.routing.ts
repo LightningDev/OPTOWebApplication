@@ -8,14 +8,14 @@ import { ClockTileDetails } from './clocktiledetails/clocktiledetails.component'
 
 // noinspection TypeScriptValidateTypes
 export const routes: Routes = [
-  {
-    path: '',
-    component: ClockTiles,
-    children: [
-      //{ path: 'details', component: ClientDetails }
-    ],
-  	{ path: 'details/:id', component: ClockTileDetails }	
-  }
+	{
+		path: '',
+		component: ClockTiles,
+		children: [
+		//{ path: 'details', component: ClientDetails }
+		]
+	},
+	{ path: 'details/:id', component: ClockTileDetails }
 ];
 
 export const routing = RouterModule.forChild(routes);

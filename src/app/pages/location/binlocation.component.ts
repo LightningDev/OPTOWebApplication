@@ -11,6 +11,9 @@ import 'style-loader!./buttons.scss';
 
 export class BinLocation {
 
+	inputBarcode:string;
+	inputBinLocation:string;
+
 	@ViewChild('childModal') childModal: ModalDirective;
 
 	constructor(private service: BinLocationService) {

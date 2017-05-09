@@ -1,6 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
 import { ClockTileService } from '../../shared/services/clocktile.service';
 import { Router } from '@angular/router';
+import {Observable} from 'rxjs/Rx';
 //import 'style-loader!./tiles.scss';
 
 @Component({

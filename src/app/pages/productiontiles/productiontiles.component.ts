@@ -1,6 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
 import { ProductionTileService } from '../../shared/services/productiontile.service';
 import { Router } from '@angular/router';
+import {Observable} from 'rxjs/Rx';
 //import 'style-loader!./tiles.scss';
 
 @Component({

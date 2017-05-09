@@ -14,8 +14,11 @@ import 'style-loader!./smartTables.scss';
 
 export class MaterialDetail {
 
-  query: string = '';
-  code: string ='';
+
+  inputMaterialID:string;
+  inputMaterialDescription:string;
+  inputMaterialPrice:string;
+  inputMaterialStock:string;
 
   settings = {
     add: {
@@ -127,21 +130,20 @@ export class MaterialDetail {
     // this.service.getData().then((data) => {
     //   this.source.load(data);
     // });
-
+    var code:string="";
     this.route.params.subscribe(params => {
-            this.code = params["code"];});
-debugger;
+            code = params["code"];});
+
     // this.service.getMaterialDetails(this.code).subscribe(res => {
     //     //alert(JSON.stringify(res.json()));
     //     this.source.load(res.json()["items"]);
     //   });
 
-    this.service.getMaterialDetails(this.code).subscribe(res => {
+    this.service.getMaterialDetails(code).subscribe(res => {
       this.inputMaterialID = res.json()["items"][0]["ID"];
       this.inputMaterialDescription = res.json()["items"][0]["description"];
       this.inputMaterialPrice = res.json()["items"][0]["cash_p_m"];
       this.inputMaterialStock = res.json()["items"][0]["stock"];
-      debugger;
      
     });
   
