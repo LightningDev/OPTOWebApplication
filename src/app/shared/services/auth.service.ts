@@ -3,26 +3,34 @@ import {AppConfig} from "../../app.module";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 
-interface auth {
-	username:string,
-	password:string
-}
+import {LoginService} from "./login.service";
+
+import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+
 
 @Injectable()
 
-export class AuthService {
-	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
-  }
+export class AuthService implements CanActivate  {
 
-  login():Observable<Response>{
-    return this.http.get(
-      `${this.config.BASE_URL}/api/users`,
-      {
-      	headers:new Headers({
-      		'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
-      		}
-      	)
-      }
-    )
+  constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, 
+    private http:Http, private router: Router, private loginservice:LoginService){
+    // let user:auth={
+      //   username: this.config.APP_ID,
+      //   password: this.config.APP_PASSWORD
+      // }
+      // console.log(user);
+      // debugger;
+
+    }
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if(this.loginservice.isLoggedIn()){
+          return true;
+        }else{
+          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+          return false;
+        }
+    }
+
+   
   }
-}

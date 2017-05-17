@@ -20,6 +20,8 @@ export class BaMenuService {
   public updateMenuByRoutes(routes: Routes) {
     let convertedRoutes = this.convertRoutesToMenus(_.cloneDeep(routes));
     this.menuItems.next(convertedRoutes);
+    console.log(convertedRoutes);
+    //debugger;
   }
 
   public convertRoutesToMenus(routes:Routes):any[] {
@@ -90,6 +92,7 @@ export class BaMenuService {
 
     // we have to collect all paths to correctly build the url then
     if (Array.isArray(item.route.path)) {
+      //debugger;
       item.route.paths = item.route.path;
     } else {
       item.route.paths = parent && parent.route && parent.route.paths ? parent.route.paths.slice(0) : ['/'];

@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
+import { LoginService } from '../shared/services/login.service'
 import { PAGES_MENU } from './pages.menu';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'pages',
@@ -21,10 +24,15 @@ import { PAGES_MENU } from './pages.menu';
 })
 export class Pages {
 
-  constructor(private _menuService: BaMenuService,) {
+  constructor(private _menuService: BaMenuService, private loginservice: LoginService, private router: Router ) {
   }
 
   ngOnInit() {
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
+  }
+
+  Logout(){
+    this.loginservice.Logout();
+    this.router.navigate(['/login']);
   }
 }

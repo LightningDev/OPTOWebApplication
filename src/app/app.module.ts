@@ -22,6 +22,9 @@ import { PagesModule } from './pages/pages.module';
 // Auth Service
 import {AuthService} from "./shared/services/auth.service";
 
+//Login
+import {LoginService} from "./shared/services/login.service";
+
 // Material Service
 import {MaterialService} from "./shared/services/material.service"
 

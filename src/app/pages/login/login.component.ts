@@ -4,8 +4,8 @@ import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/form
 import 'style-loader!./login.scss';
 
 // Auth Service
-import {Router} from '@angular/router'
-import {AuthService} from "../../shared/services/auth.service";
+import {Router, ActivatedRoute, Params} from '@angular/router'
+import {LoginService} from "../../shared/services/login.service";
 
 @Component({
   selector: 'login',
@@ -14,20 +14,22 @@ import {AuthService} from "../../shared/services/auth.service";
 export class Login {
 
   public form:FormGroup;
-  public email:AbstractControl;
+  public username:AbstractControl;
   public password:AbstractControl;
   public binlocation:AbstractControl;
   public stock:AbstractControl;
+  private noti:string='';
+  private validate:boolean=false;
 
-  constructor(fb:FormBuilder, private auth: AuthService, private router:Router) {
+  constructor(fb:FormBuilder, private loginservice: LoginService,private router:Router, private route: ActivatedRoute, ) {
     this.form = fb.group({
-      'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'username': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'binlocation': false,
       'stock': false
     });
 
-    this.email = this.form.controls['email'];
+    this.username = this.form.controls['username'];
     this.password = this.form.controls['password'];
     this.binlocation = this.form.controls['binlocation'];
     this.stock = this.form.controls['stock'];
@@ -36,21 +38,44 @@ export class Login {
     
 
   public onSubmit(values:Object):void {
-    if (this.form.valid) {
-      this.auth.login().subscribe(res =>{
-          if(res.status === 200 && this.stock.value){
-            this.router.navigate(['pages/stock']);
-           }
-          else if(res.status === 200 && this.binlocation.value){
-            this.router.navigate(['pages/location']);
-           }
-          else if(res.status === 200 && this.binlocation.value ==false){
-            this.router.navigate(['pages']);
+    if (this.form.valid ) {
+      this.loginservice.Validate(this.username.value,this.password.value).subscribe(res=>{
+       
+        if(res.json()["items"][0]!=null){
+          if(res.json()["items"][0]["isLoggedIn"]==1){
+            if(this.loginservice.Login(this.username.value,this.password.value)){
+              this.validate =true;
+              if(this.validate){
+                if(this.stock.value){
+                  this.router.navigate(['pages/stock']);
+                }
+                else if(this.binlocation.value){
+                  this.router.navigate(['pages/location']);
+                }
+                else if(this.binlocation.value ==false){
+                  this.router.navigate(['pages']);
+                }else{
+                  this.router.navigate(['login']);
+                }
+              }else{
+                this.noti = "Wrong username and password, please try again !"
+                this.router.navigate(['login']);
+              }
+            }else{
+              this.validate =false;
+              console.log(this.validate);
+              return;
+            }
           }else{
-            this.router.navigate(['pages/login']);
+            return;
           }
-       })
-
+        }else{
+            this.noti = "Wrong username and password, please try again !"
+            this.router.navigate(['login']);
+        }    
+      });
+    }else{
+      return;
     }
   }
 }
