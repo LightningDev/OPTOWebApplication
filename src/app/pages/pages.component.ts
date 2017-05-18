@@ -28,7 +28,10 @@ export class Pages {
   }
 
   ngOnInit() {
-    this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
+    let DYNAMIC_MENU = PAGES_MENU;
+    // console.log(DYNAMIC_MENU);
+    // debugger;
+    this._menuService.updateMenuByRoutes(<Routes>DYNAMIC_MENU);
   }
 
   Logout(){

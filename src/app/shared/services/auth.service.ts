@@ -24,7 +24,8 @@ export class AuthService implements CanActivate  {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.loginservice.isLoggedIn()){
+
+        if(this.loginservice.isLoggedIn()){
           return true;
         }else{
           this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
@@ -32,5 +33,15 @@ export class AuthService implements CanActivate  {
         }
     }
 
-   
+    
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+        console.log(childRoute);
+        console.log(state);
+        debugger;
+        if(childRoute._routerState.url=='/pages/part'){
+          return false;
+        }else{
+          return true;
+        }
+    }
   }

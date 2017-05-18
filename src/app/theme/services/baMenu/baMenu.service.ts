@@ -18,13 +18,13 @@ export class BaMenuService {
    * @param {Routes} routes Type compatible with app.menu.ts
    */
   public updateMenuByRoutes(routes: Routes) {
+   
     let convertedRoutes = this.convertRoutesToMenus(_.cloneDeep(routes));
     this.menuItems.next(convertedRoutes);
-    console.log(convertedRoutes);
-    //debugger;
   }
 
   public convertRoutesToMenus(routes:Routes):any[] {
+   
     let items = this._convertArrayToItems(routes);
     return this._skipEmpty(items);
   }
@@ -37,11 +37,10 @@ export class BaMenuService {
     let items = [];
     menuItems.forEach((item) => {
       this._selectItem(item);
-
       if (item.selected) {
         this._currentMenuItem = item;
       }
-
+      
       if (item.children && item.children.length > 0) {
         item.children = this.selectMenuItem(item.children);
       }
@@ -92,7 +91,6 @@ export class BaMenuService {
 
     // we have to collect all paths to correctly build the url then
     if (Array.isArray(item.route.path)) {
-      //debugger;
       item.route.paths = item.route.path;
     } else {
       item.route.paths = parent && parent.route && parent.route.paths ? parent.route.paths.slice(0) : ['/'];
