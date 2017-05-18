@@ -12,6 +12,8 @@ import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '
 
 export class AuthService implements CanActivate  {
 
+private Menu:string ='';
+
   constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, 
     private http:Http, private router: Router, private loginservice:LoginService){
     // let user:auth={
@@ -35,13 +37,13 @@ export class AuthService implements CanActivate  {
 
     
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-        console.log(childRoute);
-        console.log(state);
-        debugger;
-        if(childRoute._routerState.url=='/pages/part'){
+        if(state.url=='/pages/part'){
           return false;
         }else{
           return true;
         }
+    }
+    getMenuRender(){
+
     }
   }

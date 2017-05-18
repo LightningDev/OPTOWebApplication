@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
 import { LoginService } from '../shared/services/login.service'
+import { AuthService } from '../shared/services/auth.service'
 import { PAGES_MENU } from './pages.menu';
 import { Router } from '@angular/router';
 
@@ -24,11 +25,16 @@ import { Router } from '@angular/router';
 })
 export class Pages {
 
-  constructor(private _menuService: BaMenuService, private loginservice: LoginService, private router: Router ) {
+  constructor(private _menuService: BaMenuService, 
+    private loginservice: LoginService,
+    private authservice: AuthService, 
+    private router: Router ) {
   }
 
   ngOnInit() {
     let DYNAMIC_MENU = PAGES_MENU;
+    console.log(this.router);
+    this.authservice.getMenuRender();
     // console.log(DYNAMIC_MENU);
     // debugger;
     this._menuService.updateMenuByRoutes(<Routes>DYNAMIC_MENU);
