@@ -3,6 +3,17 @@ import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service'
 
+import { LocationGuard } from '../shared/services/location.guard.ts'
+import { MaterialGuard } from '../shared/services/material.guard.ts'
+import { PartGuard } from '../shared/services/part.guard.ts'
+import { OrderGuard } from '../shared/services/order.guard.ts'
+import { StockGuard } from '../shared/services/stock.guard.ts'
+import { ClientGuard } from '../shared/services/client.guard.ts'
+import { SupplierGuard } from '../shared/services/supplier.guard.ts'
+import { ClockOnGuard } from '../shared/services/clockon.guard.ts'
+import { ClockTileGuard } from '../shared/services/clocktile.guard.ts'
+import { ProductionTileGuard } from '../shared/services/productiontile.guard.ts'
+
 // noinspection TypeScriptValidateTypes
 
 // export function loadChildren(path) { return System.import(path); };
@@ -21,35 +32,38 @@ export const routes: Routes = [
     canActivate: [AuthService],
     component: Pages,
     children: [
-      { path: '', redirectTo: 'order',canActivateChild: [AuthService], pathMatch: 'full' },
-      // { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
-      // { path: 'login',canActivateChild: [AuthService], loadChildren: 'app/pages/login/login.module#LoginModule' },
-      { path: 'location',canActivateChild: [AuthService], loadChildren: 'app/pages/location/binlocation.module#BinLocationModule' },
-      // { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
-      // { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
-      // { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },
-      { path: 'ui',canActivateChild: [AuthService], loadChildren: 'app/pages/ui/ui.module#UiModule' },
+      { path: '', redirectTo: 'order',canActivate: [AuthService], pathMatch: 'full' },
+      
+      { path: 'location',canActivate: [LocationGuard], loadChildren: 'app/pages/location/binlocation.module#BinLocationModule' },
+
+      //{ path: 'ui',canActivateChild: [AuthService], loadChildren: 'app/pages/ui/ui.module#UiModule' },
+     
+
+      { path: 'material',canActivate: [MaterialGuard], loadChildren: 'app/pages/material/material.module#MaterialModule' },
+      { path: 'materialslist/:id',canActivate: [MaterialGuard], loadChildren: 'app/pages/materialslist/materialslist.module#MaterialsListModule' },
+      { path: 'materialdetail/:code',canActivate: [MaterialGuard], loadChildren: 'app/pages/materialdetail/materialdetail.module#MaterialDetailModule' },
+      
+      { path: 'part',canActivate: [PartGuard], loadChildren: 'app/pages/part/part.module#PartModule' },
+      { path: 'partlist/:id',canActivate: [PartGuard], loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
+    
+      { path: 'stock',canActivate: [StockGuard], loadChildren: 'app/pages/stock/stock.module#StockModule'},
+      { path: 'clockon',canActivate: [ClockOnGuard], loadChildren: 'app/pages/clockon/clockon.module#ClockOnModule'},
+      { path: 'clocktiles',canActivate: [ClockTileGuard], loadChildren: 'app/pages/clocktiles/clocktiles.module#ClockTilesModule'},
+      { path: 'productiontiles',canActivate: [ProductionTileGuard], loadChildren: 'app/pages/productiontiles/productiontiles.module#ProductionTilesModule'},
+      { path: 'clients',canActivate: [ClientGuard], loadChildren: 'app/pages/clients/clients.module#ClientsModule' },
+      { path: 'suppliers',canActivate: [SupplierGuard], loadChildren: 'app/pages/suppliers/suppliers.module#SuppliersModule' },
+      { path: 'order',canActivate: [OrderGuard], loadChildren: 'app/pages/order/order.module#OrderModule' },
+      { path: 'orderdetail/:id',canActivate: [OrderGuard], loadChildren: 'app/pages/orderdetail/orderdetail.module#OrderDetailModule' },
+   
       //{ path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
       // { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
       // { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' },
-
-      { path: 'material',canActivateChild: [AuthService], loadChildren: 'app/pages/material/material.module#MaterialModule' },
-      { path: 'materialslist/:id',canActivateChild: [AuthService], loadChildren: 'app/pages/materialslist/materialslist.module#MaterialsListModule' },
-      { path: 'materialdetail/:code',canActivateChild: [AuthService], loadChildren: 'app/pages/materialdetail/materialdetail.module#MaterialDetailModule' },
-      
-      { path: 'part',canActivateChild: [AuthService], loadChildren: 'app/pages/part/part.module#PartModule' },
-      { path: 'partlist/:id',canActivateChild: [AuthService], loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
       //{ path: 'partlist', loadChildren: 'app/pages/partlist/partlist.module#PartListModule' },
-      { path: 'stock',canActivateChild: [AuthService], loadChildren: 'app/pages/stock/stock.module#StockModule'},
-      { path: 'clockon',canActivateChild: [AuthService], loadChildren: 'app/pages/clockon/clockon.module#ClockOnModule'},
-      { path: 'clocktiles',canActivateChild: [AuthService], loadChildren: 'app/pages/clocktiles/clocktiles.module#ClockTilesModule'},
-      { path: 'productiontiles',canActivateChild: [AuthService], loadChildren: 'app/pages/productiontiles/productiontiles.module#ProductionTilesModule'},
-      { path: 'clients',canActivateChild: [AuthService], loadChildren: 'app/pages/clients/clients.module#ClientsModule' },
-      { path: 'suppliers',canActivateChild: [AuthService], loadChildren: 'app/pages/suppliers/suppliers.module#SuppliersModule' },
-      { path: 'order',canActivateChild: [AuthService], loadChildren: 'app/pages/order/order.module#OrderModule' },
-      { path: 'orderdetail/:id',canActivateChild: [AuthService], loadChildren: 'app/pages/orderdetail/orderdetail.module#OrderDetailModule' },
-   
-
+      // { path: 'editors', loadChildren: 'app/pages/editors/editors.module#EditorsModule' },
+      // { path: 'components', loadChildren: 'app/pages/components/components.module#ComponentsModule' },
+      // { path: 'charts', loadChildren: 'app/pages/charts/charts.module#ChartsModule' },
+      // { path: 'dashboard', loadChildren: 'app/pages/dashboard/dashboard.module#DashboardModule' },
+      // { path: 'login',canActivateChild: [AuthService], loadChildren: 'app/pages/login/login.module#LoginModule' },
     ]
   }
 ];

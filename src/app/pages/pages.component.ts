@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { BaMenuService } from '../theme';
 import { LoginService } from '../shared/services/login.service'
 import { AuthService } from '../shared/services/auth.service'
+import { TEST_MENU } from './pages.menu';
 import { PAGES_MENU } from './pages.menu';
 import { Router } from '@angular/router';
 
@@ -32,11 +33,7 @@ export class Pages {
   }
 
   ngOnInit() {
-    let DYNAMIC_MENU = PAGES_MENU;
-    console.log(this.router);
-    this.authservice.getMenuRender();
-    // console.log(DYNAMIC_MENU);
-    // debugger;
+    var DYNAMIC_MENU = this.loginservice.getMenuRenderByUser();
     this._menuService.updateMenuByRoutes(<Routes>DYNAMIC_MENU);
   }
 

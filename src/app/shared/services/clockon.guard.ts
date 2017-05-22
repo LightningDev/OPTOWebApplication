@@ -10,7 +10,7 @@ import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '
 
 @Injectable()
 
-export class AuthService implements CanActivate  {
+export class ClockOnGuard implements CanActivate  {
 
   constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, 
     private http:Http, private router: Router, private loginservice:LoginService){
@@ -23,14 +23,13 @@ export class AuthService implements CanActivate  {
 
     }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if(this.loginservice.isLoggedIn()){
-          return true;
-        }else{
-          this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-          return false;
-        }
+       let activate_route = this.loginservice.getMenu();
+       if(activate_route[0]["menu_clock_on"]==1){
+         return true;
+       }else{
+         return false;
+       }
     }
-
   }

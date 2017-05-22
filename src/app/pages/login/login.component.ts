@@ -20,6 +20,7 @@ export class Login {
   public stock:AbstractControl;
   private noti:string='';
   private validate:boolean=false;
+  private menu;
 
   constructor(fb:FormBuilder, private loginservice: LoginService,private router:Router, private route: ActivatedRoute, ) {
     this.form = fb.group({
@@ -40,10 +41,10 @@ export class Login {
   public onSubmit(values:Object):void {
     if (this.form.valid ) {
       this.loginservice.Validate(this.username.value,this.password.value).subscribe(res=>{
-       
         if(res.json()["items"][0]!=null){
           if(res.json()["items"][0]["isLoggedIn"]==1){
-            if(this.loginservice.Login(this.username.value,this.password.value)){
+            this.menu = res.json()["items"][0]["menus"];
+            if(this.loginservice.Login(this.username.value,this.password.value,this.menu)){
               this.validate =true;
               if(this.validate){
                 if(this.stock.value){
