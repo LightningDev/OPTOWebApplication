@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { PartService } from '../../shared/services/part.service'
 
@@ -12,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './part.html',
 })
 
-export class Part {
+export class Part implements AfterViewInit{
 
   query: string = '';
 
@@ -28,30 +28,18 @@ export class Part {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
       code: {
         title: 'Part Group Code',
-        type: 'string'
+        type: 'text'
       },
       description: {
         title: 'Description',
-        type: 'string'
-      },
-      // Column_3: {
-      //   title: 'Part Group',
-      //   type: 'string'
-      // },
-      // Column_4: {
-      //   title: 'Material Group',
-      //   type: 'string'
-      // },
-      // Column_5: {
-      //   title: 'Stock',
-      //   type: 'number'
-      // }
+        type: 'text'
+      }
     }
   };
 
@@ -108,6 +96,7 @@ export class Part {
     }
   ];
 
+
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private router:Router, 
@@ -119,6 +108,10 @@ export class Part {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["_embedded"]["item"]);
     })
+  }
+
+  ngAfterViewInit(){
+    document.getElementsByClassName('code')['0'].style.width = '100px';
   }
 
   onDeleteConfirm(event): void {

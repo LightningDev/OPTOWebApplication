@@ -6,6 +6,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { routing } from './materialslist.routing';
 import { MaterialsList } from './materialslist.component';
+import { MaterialListRender } from '../../shared/render/material-list-render.component';
 
 import { MaterialService } from '../../shared/services/material.service'
 
@@ -17,7 +18,11 @@ import { MaterialService } from '../../shared/services/material.service'
     Ng2SmartTableModule,
     routing
   ],
+  entryComponents: [
+    MaterialListRender
+  ],
   declarations: [
+    MaterialListRender,
     MaterialsList
   ],
   providers: [

@@ -1,9 +1,10 @@
 import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import { OrderService } from '../../shared/services/order.service';
 import { OrderDetailRender } from '../../shared/render/order-detail-render.component';
-import {Router,ActivatedRoute, Params} from '@angular/router';
+
 import 'style-loader!./smartTables.scss';
 
 @Component({

@@ -1,9 +1,11 @@
 import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import {Router} from '@angular/router';
+
 import { OrderService } from '../../shared/services/order.service';
 import { OrderRender } from '../../shared/render/order-render.component';
 
-import {Router} from '@angular/router';
+
 
 
 import 'style-loader!./smartTables.scss';
@@ -134,7 +136,6 @@ export class Order implements AfterViewInit{
     document.getElementsByClassName('customer')['0'].style.width = '100px';
     document.getElementsByClassName('contact_name')['0'].style.width = '150px';
     document.getElementsByClassName('sum_one')['0'].style.width = '100px';
-    document.getElementsByClassName("sum_one")['0'].style.textAlign = "right";
   }
 
   onDeleteConfirm(event): void {

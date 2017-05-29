@@ -1,9 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-
+import {Router,ActivatedRoute, Params} from '@angular/router';
 
 import { MaterialService } from '../../shared/services/material.service'
-import {Router,ActivatedRoute, Params} from '@angular/router';
+import { MaterialListRender } from '../../shared/render/material-list-render.component';
 
 import 'style-loader!./smartTables.scss';
 
@@ -12,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './materialslist.html',
 })
 
-export class MaterialsList {
+export class MaterialsList implements AfterViewInit{
 
   query: string = '';
   public id:number;
@@ -29,25 +29,26 @@ export class MaterialsList {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
       columns: {
       material_code: {
         title: 'Material Code',
-        type: 'string'
+        type: 'text'
       },
       description: {
         title: 'Description',
-        type: 'string'
+        type: 'text'
       },
       cash_p_m: {
         title: 'Price',
-        type: 'string'
+        type: 'custom',
+        renderComponent: MaterialListRender
       },
       stock: {
         title: 'Stock',
-        type: 'string'
+        type: 'text'
       },
     }
   };
@@ -122,6 +123,12 @@ export class MaterialsList {
         this.source.load(res.json()["_embedded"]["materials"]);
     });
   }
+    ngAfterViewInit(){
+    document.getElementsByClassName('material_code')['0'].style.width = '100px';
+    document.getElementsByClassName('cash_p_m')['0'].style.width = '100px';
+    document.getElementsByClassName('stock')['0'].style.width = '100px';
+  }
+
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
