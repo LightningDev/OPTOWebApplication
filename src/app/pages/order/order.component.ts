@@ -1,6 +1,7 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { OrderService } from '../../shared/services/order.service'
+import { OrderService } from '../../shared/services/order.service';
+import { OrderRender } from '../../shared/render/order-render.component';
 
 import {Router} from '@angular/router';
 
@@ -13,7 +14,7 @@ import 'style-loader!./smartTables.scss';
  
 })
 
-export class Order {
+export class Order implements AfterViewInit{
 
   query: string = '';
  
@@ -30,30 +31,31 @@ export class Order {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
       order_code: {
         title: 'Order ID',
-        type: 'string'
+        type: 'text'
       },
       customer_name: {
         title: 'Customer Name',
-        type: 'string'
+        type: 'text',
       },
        customer: {
         title: 'Customer ID',
-        type: 'string'
+        type: 'text'
       },
        contact_name: {
         title: 'Contact Name',
-        type: 'string'
+         type: 'text',
       },
       sum_one: {
         title: 'Total Price',
-        type: 'Float'
-      },
+        type: 'custom',
+        renderComponent: OrderRender,
+       },
       // Column_4: {
       //   title: 'Project',
       //   type: 'string'
@@ -126,6 +128,13 @@ export class Order {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["items"]);
     })
+  }
+   ngAfterViewInit(){
+    document.getElementsByClassName('order_code')['0'].style.width = '100px';
+    document.getElementsByClassName('customer')['0'].style.width = '100px';
+    document.getElementsByClassName('contact_name')['0'].style.width = '150px';
+    document.getElementsByClassName('sum_one')['0'].style.width = '100px';
+    document.getElementsByClassName("sum_one")['0'].style.textAlign = "right";
   }
 
   onDeleteConfirm(event): void {

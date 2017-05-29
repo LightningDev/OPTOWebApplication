@@ -1,7 +1,8 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-import { OrderService } from '../../shared/services/order.service'
+import { OrderService } from '../../shared/services/order.service';
+import { OrderDetailRender } from '../../shared/render/order-detail-render.component';
 import {Router,ActivatedRoute, Params} from '@angular/router';
 import 'style-loader!./smartTables.scss';
 
@@ -10,7 +11,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './orderdetail.html',
 })
 
-export class OrderDetail {
+export class OrderDetail implements AfterViewInit{
 
   query: string = '';
   public id:number;
@@ -27,33 +28,35 @@ export class OrderDetail {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
       ma: {
         title: 'Discount',
-        type: 'string'
+        type: 'text'
       },
       part_code_one: {
         title: 'Part Code',
-        type: 'string'
+        type: 'text'
       },
       part_desc: {
         title: 'Description',
-        type: 'string'
+        type: 'text'
       },
       sum_one: {
         title: 'Total Price',
-        type: 'string'
+        type: 'custom',
+        renderComponent: OrderDetailRender,
       },
       total_amount_one: {
         title: 'Price',
-        type: 'string'
+        type: 'custom',
+        renderComponent: OrderDetailRender,
       },
       total_qty: {
         title: 'Quantity',
-        type: 'string'
+        type: 'text'
       },
     }
   };
@@ -128,6 +131,14 @@ export class OrderDetail {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["items"]);
     });
+  }
+
+   ngAfterViewInit(){
+    document.getElementsByClassName('total_qty')['0'].style.width = '80px';
+    document.getElementsByClassName('total_amount_one')['0'].style.width = '80px';
+    document.getElementsByClassName('sum_one')['0'].style.width = '80px';
+    document.getElementsByClassName('ma')['0'].style.width = '80px';
+    document.getElementsByClassName("part_code_one")['0'].style.width = '80px';
   }
 
   onDeleteConfirm(event): void {

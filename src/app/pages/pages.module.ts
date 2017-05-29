@@ -34,7 +34,7 @@ import { Pages } from './pages.component';
   SupplierGuard,
   ClockOnGuard,
   ClockTileGuard,
-  ProductionTileGuard
+  ProductionTileGuard,
   ]
 })
 export class PagesModule {
