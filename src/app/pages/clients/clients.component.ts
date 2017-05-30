@@ -1,8 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 
 import { ClientService } from '../../shared/services/client.service';
+import { ClientsRender } from '../../shared/render/clients-render.component';
 
 import 'style-loader!./smartTables.scss';
 
@@ -11,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './clients.html',
 })
 
-export class Clients {
+export class Clients implements AfterViewInit {
   query: string = '';
 
   settings = {
@@ -26,25 +27,25 @@ export class Clients {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
       client_code: {
         title: 'Client Code',
-        type: 'string'
+        type: 'text'
       },
       client_name: {
         title: 'Client Name',
-        type: 'string'
+        type: 'text'
       },
       e_mail: {
         title: 'Email',
-        type: 'string'
+        type: 'text'
       },
       state: {
         title: 'State',
-        type: 'string'
+        type: 'text'
       }
     }
   };
@@ -108,6 +109,12 @@ export class Clients {
     this.service.getClients().subscribe(res => {
     	this.source.load(res.json()["items"]);
     })
+  }
+
+ ngAfterViewInit(){
+    document.getElementsByClassName('client_code')['0'].style.width = '100px';
+    document.getElementsByClassName('e_mail')['0'].style.width = '180px';
+    document.getElementsByClassName('state')['0'].style.width = '50px';
   }
 
   onDeleteConfirm(event): void {

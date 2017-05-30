@@ -8,6 +8,7 @@ import { routing } from './material.routing';
 import { Material } from './material.component';
 
 import { MaterialService } from '../../shared/services/material.service'
+import { MaterialRender } from '../../shared/render/material-render.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,11 @@ import { MaterialService } from '../../shared/services/material.service'
     Ng2SmartTableModule,
     routing
   ],
+  entryComponents: [
+    MaterialRender
+  ],
   declarations: [
+    MaterialRender,
     Material
   ],
   providers: [

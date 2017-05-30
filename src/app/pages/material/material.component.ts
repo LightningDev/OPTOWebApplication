@@ -1,9 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { MaterialService } from '../../shared/services/material.service'
-
 import {Router} from '@angular/router';
 
+import { MaterialService } from '../../shared/services/material.service'
+import { MaterialRender } from '../../shared/render/material-render.component';
 
 import 'style-loader!./smartTables.scss';
 
@@ -12,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './material.html',
 })
 
-export class Material {
+export class Material implements AfterViewInit {
 
   query: string = '';
 
@@ -28,30 +28,18 @@ export class Material {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
       code: {
         title: 'Material Group Code',
-        type: 'string'
+        type: 'text'
       },
       description: {
         title: 'Description',
-        type: 'string'
+        type: 'text'
       },
-      // Column_3: {
-      //   title: 'Part Group',
-      //   type: 'string'
-      // },
-      // Column_4: {
-      //   title: 'Material Group',
-      //   type: 'string'
-      // },
-      // Column_5: {
-      //   title: 'Stock',
-      //   type: 'number'
-      // }
     }
   };
 
@@ -119,6 +107,10 @@ export class Material {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["_embedded"]["item"]);
     })
+  }
+
+   ngAfterViewInit(){
+    document.getElementsByClassName('code')['0'].style.width = '100px';
   }
 
   onDeleteConfirm(event): void {

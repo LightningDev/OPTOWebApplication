@@ -1,8 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 
 import { SupplierService } from '../../shared/services/supplier.service';
+import { SupplierRender } from '../../shared/render/supplier-render.component';
 
 import 'style-loader!./smartTables.scss';
 
@@ -11,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './suppliers.html',
 })
 
-export class Suppliers {
+export class Suppliers implements InitAfterView{
   query: string = '';
 
   settings = {
@@ -26,7 +27,7 @@ export class Suppliers {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
     columns: {
@@ -108,6 +109,12 @@ export class Suppliers {
     this.service.getSuppliers().subscribe(res => {
     	this.source.load(res.json()["items"]);
     })
+  }
+
+  ngAfterViewInit(){
+    document.getElementsByClassName('supplier_code')['0'].style.width = '100px';
+    document.getElementsByClassName('email')['0'].style.width = '200px';
+    document.getElementsByClassName('state')['0'].style.width = '50px';
   }
 
   onDeleteConfirm(event): void {

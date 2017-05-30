@@ -13,6 +13,8 @@ import { PartService } from '../../shared/services/part.service';
 import { OrderService } from '../../shared/services/order.service';
 import { MaterialService } from '../../shared/services/material.service';
 
+import { SupplierRender } from '../../shared/render/supplier-render.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +23,11 @@ import { MaterialService } from '../../shared/services/material.service';
     Ng2SmartTableModule,
     routing
   ],
+  entryComponents:[
+    SupplierRender
+  ],
   declarations: [
+    SupplierRender,
     Suppliers,
     SupplierDetails,
   ],

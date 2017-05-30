@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 
@@ -12,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './partlist.html',
 })
 
-export class PartList {
+export class PartList implements AfterViewInit  {
 
   query: string = '';
   public id:number;
@@ -29,7 +29,7 @@ export class PartList {
       cancelButtonContent: '<i class="ion-close"></i>',
     },
     delete: {
-      deleteButtonContent: '<i class="ion-trash-a"></i>',
+      deleteButtonContent: '<i class="hidden"></i>',
       confirmDelete: true
     },
       columns: {
@@ -131,6 +131,13 @@ export class PartList {
         //alert(JSON.stringify(res.json()));
         this.source.load(res.json()["items"]);
     });
+  }
+  ngAfterViewInit() {
+    //part list render
+    document.getElementsByClassName('code')['0'].style.width = '100px';
+      document.getElementsByClassName('cust_part_no')['0'].style.width = '100px';
+      document.getElementsByClassName('drawing_no')['0'].style.width = '100px';
+      document.getElementsByClassName('unit')['0'].style.width = '100px';
   }
 
   onDeleteConfirm(event): void {

@@ -16,6 +16,8 @@ import { MaterialService } from '../../../shared/services/material.service';
 
 import { ChartistJsService } from './chartistJs.service';
 
+import { ClientDetailRender } from '../../../shared/render/client-detail-render.component';
+
 import 'style-loader!./chartistJs.scss';
 
 import 'style-loader!../smartTables.scss';
@@ -59,30 +61,30 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			cancelButtonContent: '<i class="ion-close"></i>',
 		},
 		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
+			deleteButtonContent: '<i class="hidden"></i>',
 			confirmDelete: true
 		},
 
 		columns: {
 			code: {
 				title: 'Code',
-				type: 'string',
+				type: 'text',
 			},
 			cust_part_no: {
 				title: 'Part Number',
-				type: 'string',
+				type: 'text',
 			},
 			drawing_no: {
 				title: 'Drawing Number',
-				type: 'string'
+				type: 'text'
 			},
 			part_description: {
 				title: 'Description',
-				type: 'string',
+				type: 'text',
 			},
 			unit: {
 				title: 'Unit',
-				type: 'string',
+				type: 'text',
 			}
 		}
 	};
@@ -99,30 +101,31 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			cancelButtonContent: '<i class="ion-close"></i>',
 		},
 		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
+			deleteButtonContent: '<i class="hidden"></i>',
 			confirmDelete: true
 		},
 
 		columns: {
-			contact_name: {
-				title: 'Contact Name',
-				type: 'string',
-			},
-			customer: {
-				title: 'Customer Code',
-				type: 'string',
+			order_code: {
+				title: 'Order Code',
+				type: 'text',
 			},
 			customer_name: {
 				title: 'Customer Name',
-				type: 'string'
+				type: 'text'
 			},
-			order_code: {
-				title: 'Order Code',
-				type: 'string',
+			customer: {
+				title: 'Customer Code',
+				type: 'text',
+			},
+			contact_name: {
+				title: 'Contact Name',
+				type: 'text',
 			},
 			sum_one: {
 				title: 'Price',
-				type: 'string',
+				type: 'custom',
+				renderComponents: ClientDetailRender
 			}
 		}
 	};
@@ -139,26 +142,26 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			cancelButtonContent: '<i class="ion-close"></i>',
 		},
 		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
+			deleteButtonContent: '<i class="hidden"></i>',
 			confirmDelete: true
 		},
 
 		columns: {
 			client_code: {
 				title: 'Client Code',
-				type: 'string',
+				type: 'text',
 			},
 			client_name: {
 				title: 'Client Name',
-				type: 'string',
+				type: 'text',
 			},
 			e_mail: {
 				title: 'Email',
-				type: 'string'
+				type: 'text'
 			},
 			state: {
 				title: 'State',
-				type: 'string',
+				type: 'text',
 			}
 		}
 	};
@@ -288,6 +291,21 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
+		//part list render
+		document.getElementsByClassName('code')['0'].style.width = '100px';
+    	document.getElementsByClassName('cust_part_no')['0'].style.width = '100px';
+    	document.getElementsByClassName('drawing_no')['0'].style.width = '100px';
+    	document.getElementsByClassName('unit')['0'].style.width = '100px';
+    	//order list render
+    	document.getElementsByClassName('order_code')['0'].style.width = '100px';
+	    document.getElementsByClassName('customer')['0'].style.width = '100px';
+	    document.getElementsByClassName('contact_name')['0'].style.width = '150px';
+	    document.getElementsByClassName('sum_one')['0'].style.width = '100px';
+    	//material list render
+	    document.getElementsByClassName('client_code')['0'].style.width = '100px';
+	    document.getElementsByClassName('e_mail')['0'].style.width = '180px';
+	    document.getElementsByClassName('state')['0'].style.width = '50px';
+
 		let el = this._elementRef.nativeElement.querySelector('.google-maps');
 		this.route.params
 		.switchMap((params: Params) => this.client_service.getClientDetails(params['id']))
