@@ -3,10 +3,20 @@
 		<ba-card title="Clock On" baCardClass="with-scroll">
 			<div class="row">
 				<div class="col-sm-6">
-					<div class="form-group">
+					<div class="form-group" id="emp">
 						<label for="employee-number">Employee Number</label>
 						<i class="icon-person-add text-input-icon"></i>
-						<input id="employee-number" style="text-align:center" type="text" class="form-control" placeholder="Employee number">
+						<input id="employee-number" style="text-align:center" type="text" class="form-control" placeholder="Employee number" value="{{curr_code}}" readonly>
+					</div>
+					<div class="form-group" id="job" style="display:none">
+						<label for="employee-number">Job Number</label>
+						<i class="icon-person-add text-input-icon"></i>
+						<input id="job-number" style="text-align:center" class="form-control" placeholder="Job number" value="{{curr_code}}" readonly>
+					</div>
+					<div class="form-group" id="pro" style="display:none">
+						<label for="employee-number">Process</label>
+						<i class="icon-person-add text-input-icon"></i>
+						<input id="process-number" style="text-align:center" class="form-control" placeholder="Process number" value="{{curr_code}}" readonly>
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -14,47 +24,11 @@
 			              <p>Notificaton</p>
 			              <p>Odio amet viverra rutrum</p>
 			        </div>
-				<!-- <div class="col-sm-6">
-					<div class="form-group">
-						<label for="employee-name">Employee Name</label>
-						<i class="icon-person text-input-icon"></i>
-						<input id="employee-name" style="text-align:center" type="text" class="form-control" placeholder="Employee name" disabled="">
-					</div>
-				</div> -->
 				</div>
 			</div>
 			
-			<!-- <div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label for="employee-name">Date</label>
-						<i class="icon-today text-input-icon"></i>
-						<input id="clock-on-emp-date" style="text-align:center" type="text" class="form-control" placeholder="Date" disabled="">
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label for="employee-name">Time</label>
-						<i class="icon-timer text-input-icon"></i>
-						<input id="clock-on-emp-time" type="text" style="text-align:center" class="form-control" placeholder="Time" disabled="">
-					</div>
-				</div>
-			</div> -->
+		
 			</ba-card>
-		
-	
-	<!-- <fieldset class="fieldset-auto-width">
-		<legend style="text-align:left">First start details</legend>
-		<div class="text-input-container card">
-			<i class="icon-today text-input-icon"></i>
-			<input id="clock-on-emp-date-status" style="text-align:center" type="text" class="text-input" placeholder="Date" disabled="">
-		</div>
-		
-		<div class="text-input-container card">
-			<i class="icon-timer text-input-icon"></i>
-			<input id="clock-on-emp-time-status" type="text" style="text-align:center" class="text-input" placeholder="Time" disabled="">
-		</div>
-	</fieldset> -->
 	
 
 <div class="new-empty-line"></div>
@@ -72,27 +46,27 @@
             <input type="hidden" id="kp_input_type" value="2">
 <table border="1" bordercolor="white" style="margin: 0px auto;">
 <tr>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">1</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">2</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">3</button></td>
-	<td><button class="btn btn-sq btn-success" style="width:38px;height:50px" onclick="">Back</button>
-	<button class="btn btn-sq btn-success" style="width:38px;height:50px" onclick="">Next</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="One($event)">1</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Two($event)">2</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Three($event)">3</button></td>
+	<td><button class="btn btn-sq btn-success" style="width:38px;height:50px" (click)="Back($event)">Back</button>
+	<button class="btn btn-sq btn-success" style="width:38px;height:50px" (click)="Next($event)">Next</button></td>
 </tr>
 <tr>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">4</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">5</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="">6</button></td>
-	<td><button class="btn btn-sq btn-warning" style="width:80px;height:50px" onclick="">Status</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Four($event)">4</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Five($event)">5</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Six($event)">6</button></td>
+	<td><button class="btn btn-sq btn-warning" style="width:80px;height:50px" (click)="Status($event)">Status</button></td>
 </tr>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="(7)">7</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="(8)">8</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="(9)">9</button></td>
-	<td><button class="btn btn-sq btn-danger" style="width:80px;height:50px" onclick="">Clear</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Seven($event)">7</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Eight($event)">8</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Nine($event)">9</button></td>
+	<td><button class="btn btn-sq btn-danger" style="width:80px;height:50px" (click)="Clear($event)">Clear</button></td>
 <tr>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="('-')">-</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" onclick="(0)">0</button></td>
-	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" >+</button></td>
-	<td><button class="btn btn-sq btn-danger" style="width:80px;height:50px" >Delete</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Minus($event)">-</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Zero($event)">0</button></td>
+	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Add($event)">+</button></td>
+	<td><button class="btn btn-sq btn-danger" style="width:80px;height:50px" (click)="Delete($event)">CE</button></td>
 </tr>
 </table>
 
