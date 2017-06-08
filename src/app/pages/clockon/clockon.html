@@ -13,16 +13,36 @@
 						<i class="icon-person-add text-input-icon"></i>
 						<input id="job-number" style="text-align:center" class="form-control" placeholder="Job number" value="{{curr_code}}" readonly>
 					</div>
-					<div class="form-group" id="pro" style="display:none">
-						<label for="employee-number">Process</label>
-						<i class="icon-person-add text-input-icon"></i>
-						<input id="process-number" style="text-align:center" class="form-control" placeholder="Process number" value="{{curr_code}}" readonly>
+					<div class="form-group" id="wc" style="display:none">
+						<label for="wc-number">Work Center</label>
+						<select style="width:100%;height:40px;background-color: #b4e391;" class="form-control" id="wc-number" >
+						  <option *ngFor='let workcenter of workcenters | async' value={{workcenter.workcenter}}>{{workcenter.workcenter_desc}}</option>
+						</select>
 					</div>
 				</div>
+
 				<div class="col-sm-6">
-					<div class="section-block">
-			              <p>Notificaton</p>
-			              <p>Odio amet viverra rutrum</p>
+					<div class="section-block" id="section1">
+			              <p>Status</p>
+			              <p>{{status_emp}}</p>
+			              <p>{{status_clock_on}}</p>
+			              <p>{{status_time}}</p>
+			              <p>{{status_date}}</p>
+			        </div>
+			        <div class="section-block" id="section2" style="display:none">
+			              <label for="onoffswitch">Finish Job</label>
+			              <div class="onoffswitch">
+						    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" data-id="1" id="myonoffswitch" value=1 checked >
+						    <label class="onoffswitch-label" for="myonoffswitch">
+						        <span class="onoffswitch-inner"></span>
+						        <span class="onoffswitch-switch"></span>
+						    </label>
+						  </div>
+
+						  <div class="new-empty-line">
+			              <button class="btn btn-sq btn-warning" style="width:80px;height:50px" (click)="ClockOffJob($event)">Clock Off Job</button>
+			              <button class="btn btn-sq btn-warning" style="width:80px;height:50px" (click)="ClockOffDay($event)">Clock Off Day</button>
+			              </div>
 			        </div>
 				</div>
 			</div>
@@ -49,14 +69,14 @@
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="One($event)">1</button></td>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Two($event)">2</button></td>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Three($event)">3</button></td>
-	<td><button class="btn btn-sq btn-success" style="width:38px;height:50px" (click)="Back($event)">Back</button>
+	<td><button class="btn btn-sq btn-success" style="width:38px;height:50px" (click)="Quit($event)">Quit</button>
 	<button class="btn btn-sq btn-success" style="width:38px;height:50px" (click)="Next($event)">Next</button></td>
 </tr>
 <tr>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Four($event)">4</button></td>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Five($event)">5</button></td>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Six($event)">6</button></td>
-	<td><button class="btn btn-sq btn-warning" style="width:80px;height:50px" (click)="Status($event)">Status</button></td>
+	<td><button class="btn btn-sq btn-warning" id="status" style="width:80px;height:50px" (click)="Status($event)">Status</button></td>
 </tr>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Seven($event)">7</button></td>
 	<td><button class="btn btn-sq-sm btn-primary" style="width:50px;height:50px" (click)="Eight($event)">8</button></td>

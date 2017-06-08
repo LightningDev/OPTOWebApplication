@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgaModule } from '../../theme/nga.module';
 import { EmployeeService } from '../../shared/services/employee.service';
+import { ClockOnService } from '../../shared/services/clockon.service';
+import { DropdownModule, ModalModule } from 'ng2-bootstrap';
 import { ClockOn } from './clockon.component'
 import { routing } from './clockon.routing'
 
@@ -13,13 +15,16 @@ import { routing } from './clockon.routing'
     FormsModule,
     NgaModule,
     Ng2SmartTableModule,
+    DropdownModule.forRoot(),
+    ModalModule.forRoot(),
     routing
   ],
   declarations: [
     ClockOn,
   ],
   providers: [
-    EmployeeService
+    EmployeeService,
+    ClockOnService
   ]
 })
 export class ClockOnModule {}
