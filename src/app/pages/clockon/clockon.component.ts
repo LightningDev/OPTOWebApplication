@@ -182,9 +182,16 @@ export class ClockOn {
 					document.getElementById('wc').style.display = 'none';
 					document.getElementById("status").disabled = false;
 
-					this.status_emp=res.json()["clock_messsage"];
-					this.status_clock_on=res.json()["job_message"];
-					this.status_time=res.json()["response_message"];
+					let re = /\^/g; 
+					//var newstr = str.replace(re, " "); 
+					let tmp1=res.json()["response_message"];
+					this.status_emp=tmp1.replace(re," ");
+
+					let tmp2=res.json()["job_message"];
+					this.status_clock_on=tmp2.replace(re," ");
+
+					let tmp3 =res.json()["clock_message"];
+					this.status_time=tmp3;
 					this.status_date="";
 
 					this.wc_code=this.curr_code;
@@ -233,7 +240,10 @@ export class ClockOn {
 			this.curr_page=1;
 			this.curr_code=""
 			this.status_emp="";
-			this.status_clock_on=res.json()["response_messsage"];
+			let re = /\^/g; 
+					//var newstr = str.replace(re, " "); 
+			let tmp1=res.json()["response_message"];
+			this.status_clock_on=tmp1.replace(re," ");
 			this.status_time="";
 			this.status_date="";
 		})
@@ -245,7 +255,10 @@ export class ClockOn {
 			this.curr_page=1;
 			this.curr_code=""
 			this.status_emp="";
-			this.status_clock_on=res.json()["response_messsage"];
+			let re = /\^/g; 
+					//var newstr = str.replace(re, " "); 
+			let tmp1=res.json()["response_message"];
+			this.status_clock_on=tmp1.replace(re," ");
 			this.status_time="";
 			this.status_date="";
 		})

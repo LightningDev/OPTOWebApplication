@@ -38,8 +38,10 @@ export class BinLocation {
 		} 
 		this.service.sendBinLocation(json).subscribe(res => {
     		alert(res.json().message);
-
+    		this.inputBarcode="";
+			this.inputBinLocation="";
     	})
+
 	}
 
 	button_IN(event) {
@@ -53,8 +55,10 @@ export class BinLocation {
 		} 
 		this.service.sendBinLocation(json).subscribe(res => {
     		alert(res.json().message);
-    		
+    		this.inputBarcode="";
+			this.inputBinLocation="";
     	})
+
 	}
 
 }
