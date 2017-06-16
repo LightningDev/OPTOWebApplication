@@ -1,9 +1,80 @@
 <div class="widgets">
+	<div>
+		<ba-card title="Location Details" baCardClass="with-scroll">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-6 col-sm-4">
+							<label for="inlineRadioOptions">Input Type</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6 col-sm-4">
+							<label class="radio-inline custom-radio nowrap">
+								<input type="radio" name="inlineRadioOptions" id="inputBarcode" value="inputBarcode" [(ngModel)]="inputBarcode" (click)="radio_stock($event)">
+								<span>BarCode</span>
+							</label>
+						</div>
+						<div class="col-6 col-sm-4">
+							<label class="radio-inline custom-radio nowrap">
+								<input type="radio" name="inlineRadioOptions" id="inputBinLocation" value="inputBinLocation" [(ngModel)]="inputBinLocation" (click)="radio_stock($event)">
+								<span>Location</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label for="codeField">{{markup}}</label>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="codeField" placeholder="Code" [(ngModel)]="codeField">
+						</div>
+						<div class="col-sm-6">
+							<div class="button-wrapper">
+								<button type="button" id="in" class="btn btn-info" (click)="check($event)"> Check </button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-  <div class="row">
-    <ba-card title="Material Group" baCardClass="with-scroll">
-      <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
-    </ba-card>
-  </div>
+			<div class="new-empty-line"></div>
+			<br>
+			<div class="row" id="material">
+				<ba-card [(title)]="codeField" baCardClass="with-scroll">
+					<ng2-smart-table [settings]="settings1" [source]="source1" (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+				</ba-card>
+			</div>
+			<div class="row" id="location" style="display: none;">		
+				<ba-card [(title)]="codeField" baCardClass="with-scroll">
+					<ng2-smart-table [settings]="settings2" [source]="source2" (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+				</ba-card>
+			</div>
+			<!-- <div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="codeField">{{markup}}</label>
+						<input type="text" class="form-control" id="codeField" placeholder="Code" [(ngModel)]="codeField">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<button type="button" id="in" class="btn btn-info btn-lg" (click)="check($event)"> Check </button>
+				</div>
+			</div>
+		-->
 
+			<!-- <div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<div class="button-wrapper">
+						<button type="button" id="in" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">IN</button>
+						</div>
+					</div>
+				</div>
+			</div> -->  
+
+		</ba-card>
+	</div>
 </div>
+
+

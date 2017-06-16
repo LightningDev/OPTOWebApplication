@@ -1,22 +1,30 @@
-import {Component, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import {Router} from '@angular/router';
 
-// import { MaterialService } from '../../shared/services/material.service'
-// import { MaterialRender } from '../../shared/render/material-render.component';
+import { LocationLookUpService } from '../../shared/services/locationlookup.service'
+import { MaterialService } from '../../shared/services/material.service'
 
 import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'LocationLookUp',
+  selector: 'location-lookup',
   templateUrl: './locationlookup.html',
 })
 
-export class LocationLookUp implements AfterViewInit {
+export class LocationLookUp{
 
-  query: string = '';
+  inputBarcode:string="";
+  inputBinLocation:string="";
+  currentRadio: string="";
+  codeField:string="";
 
-  settings = {
+  markup:string="Default";
+
+  status:string="";
+  tableName:string;
+
+  settings1 = {
     add: {
       addButtonContent: '<i class="ion-ios-plus-outline"></i>',
       createButtonContent: '<i class="ion-checkmark"></i>',
@@ -33,84 +41,128 @@ export class LocationLookUp implements AfterViewInit {
     },
     columns: {
       code: {
-        title: 'Material Group Code',
-        type: 'text'
+        title: 'Location ID',
+        type: 'text',
       },
-      description: {
-        title: 'Description',
-        type: 'text'
+      date: {
+        title: 'Date',
+        type: 'text',
       },
     }
   };
 
-    metricsTableData = [
-    {
-      image: 'app/browsers/chrome.svg',
-      browser: 'Google Chrome',
-      visits: '10,392',
-      isVisitsUp: true,
-      purchases: '4,214',
-      isPurchasesUp: true,
-      percent: '45%',
-      isPercentUp: true
+  settings2 = {
+    add: {
+      addButtonContent: '<i class="ion-ios-plus-outline"></i>',
+      createButtonContent: '<i class="ion-checkmark"></i>',
+      cancelButtonContent: '<i class="ion-close"></i>',
     },
-    {
-      image: 'app/browsers/firefox.svg',
-      browser: 'Mozilla Firefox',
-      visits: '7,873',
-      isVisitsUp: true,
-      purchases: '3,031',
-      isPurchasesUp: false,
-      percent: '28%',
-      isPercentUp: true
+    edit: {
+      editButtonContent: '<i class="ion-edit"></i>',
+      saveButtonContent: '<i class="ion-checkmark"></i>',
+      cancelButtonContent: '<i class="ion-close"></i>',
     },
-    {
-      image: 'app/browsers/ie.svg',
-      browser: 'Internet Explorer',
-      visits: '5,890',
-      isVisitsUp: false,
-      purchases: '2,102',
-      isPurchasesUp: false,
-      percent: '17%',
-      isPercentUp: false
+    delete: {
+      deleteButtonContent: '<i class="hidden"></i>',
+      confirmDelete: true
     },
-    {
-      image: 'app/browsers/safari.svg',
-      browser: 'Safari',
-      visits: '4,001',
-      isVisitsUp: false,
-      purchases: '1,001',
-      isPurchasesUp: false,
-      percent: '14%',
-      isPercentUp: true
-    },
-    {
-      image: 'app/browsers/opera.svg',
-      browser: 'Opera',
-      visits: '1,833',
-      isVisitsUp: true,
-      purchases: '83',
-      isPurchasesUp: true,
-      percent: '5%',
-      isPercentUp: false
+    columns: {
+      code: {
+        title: 'Material ID',
+        type: 'text',
+      },
+      date: {
+        title: 'Date',
+        type: 'text',
+      },
     }
-  ];
+  };
 
-  source: LocalDataSource = new LocalDataSource();
 
-  constructor(private router:Router) {
+  source1: LocalDataSource = new LocalDataSource();
+  source2: LocalDataSource = new LocalDataSource();
+  constructor(private locationlookupservice: LocationLookUpService, private materialservice: MaterialService) {
+    
   }
 
-   ngAfterViewInit(){
-    //document.getElementsByClassName('code')['0'].style.width = '100px';
+  radio_stock(event) {    
+    this.currentRadio = event.currentTarget.defaultValue;
+    if(this.currentRadio=="inputBarcode"){
+     this.markup="Bar Code";
+     }
+
+     if(this.currentRadio=="inputBinLocation"){
+       this.markup="Location";
+     }
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+
+  check(event){
+   if(this.currentRadio!=""){
+     if(this.codeField!=""){ 
+       if(this.currentRadio=="inputBarcode"){
+         this.locationlookupservice.getLocationByMaterialId(this.codeField).subscribe(res=>{
+           if(res.json()["items"][0]["code"]!=" "){
+             this.source1.load(res.json()["items"]);
+              document.getElementById('material').style.display = 'block';
+              document.getElementById('location').style.display = 'none';
+            }else{
+              alert("Wrong code id")
+            }
+         })
+       }
+
+       if(this.currentRadio=="inputBinLocation"){
+         this.materialservice.getMaterialIdByLocationId(this.codeField).subscribe(res=>{
+           if(res.json()["items"][0]["code"]!=" "){
+             this.source2.load(res.json()["items"]);
+             document.getElementById('material').style.display = 'none';
+             document.getElementById('location').style.display = 'block';
+           }else{
+              alert("Wrong code id")
+           }
+         })
+       }
+     }else{
+       alert("The input field cannot be empty");
+     }
+   }else{
+      alert("Please select input type");
+   }
+
   }
-  
+
+  // button_OUT(event) {
+  //   //alert("OUT CLICKED");
+  //   let json = {
+  //     "material_code" : "",
+  //     "barcode": this.inputBarcode,
+  //     "bin_location" : this.inputBinLocation,
+  //     "action" : "0"
+  //   } 
+  //   this.service.sendBinLocation(json).subscribe(res => {
+  //       alert(res.json().message);
+  //       this.inputBarcode="";
+  //     this.inputBinLocation="";
+  //     })
+
+  // }
+
+  // button_IN(event) {
+  //   //alert("IN CLICKED");
+  //   let json = {
+  //     "material_code" : "",
+  //     "barcode": this.inputBarcode,
+  //     "bin_location" : this.inputBinLocation,
+  //     "action" : "1"
+
+  //   } 
+  //   this.service.sendBinLocation(json).subscribe(res => {
+  //       alert(res.json().message);
+  //       this.inputBarcode="";
+  //     this.inputBinLocation="";
+  //     })
+
+  // }
+
 }

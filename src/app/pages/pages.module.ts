@@ -7,6 +7,7 @@ import { AuthService } from '../shared/services/auth.service'
 import { LoginService } from '../shared/services/login.service'
 
 import { LocationGuard } from '../shared/services/location.guard.ts'
+import { LocationLookUpGuard } from '../shared/services/locationlookup.guard.ts'
 import { MaterialGuard } from '../shared/services/material.guard.ts'
 import { PartGuard } from '../shared/services/part.guard.ts'
 import { OrderGuard } from '../shared/services/order.guard.ts'
@@ -26,6 +27,7 @@ import { Pages } from './pages.component';
   AuthService,
   LoginService,
   LocationGuard,
+  LocationLookUpGuard,
   MaterialGuard,
   PartGuard,
   OrderGuard,

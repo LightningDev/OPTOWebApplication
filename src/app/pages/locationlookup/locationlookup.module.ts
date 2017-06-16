@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-import { routing } from './material.routing';
-import { Material } from './material.component';
+import { routing } from './locationlookup.routing';
+import { LocationLookUp } from './locationlookup.component';
 
+import { LocationLookUpService } from '../../shared/services/locationlookup.service'
 import { MaterialService } from '../../shared/services/material.service'
-import { MaterialRender } from '../../shared/render/material-render.component';
 
 @NgModule({
   imports: [
@@ -18,14 +18,11 @@ import { MaterialRender } from '../../shared/render/material-render.component';
     Ng2SmartTableModule,
     routing
   ],
-  entryComponents: [
-    MaterialRender
-  ],
   declarations: [
-    MaterialRender,
-    Material
+    LocationLookUp,
   ],
   providers: [
+    LocationLookUpService,
     MaterialService
   ]
 })

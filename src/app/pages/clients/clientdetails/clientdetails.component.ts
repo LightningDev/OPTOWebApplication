@@ -36,6 +36,7 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 
 	inputClientCode:string;
 	inputClientName:string;
+	inputCountryCode:string;
 	inputEmail:string;
 	inputWebsite:string;
 	inputPostalAddress1:string;
@@ -62,7 +63,7 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 		},
 		delete: {
 			deleteButtonContent: '<i class="hidden"></i>',
-			confirmDelete: true
+			confirmDelete: true,
 		},
 
 		columns: {
@@ -76,7 +77,7 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			},
 			drawing_no: {
 				title: 'Drawing Number',
-				type: 'text'
+				type: 'text',
 			},
 			part_description: {
 				title: 'Description',
@@ -124,9 +125,9 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			},
 			sum_one: {
 				title: 'Price',
-				type: 'custom',
-				renderComponents: ClientDetailRender
-			}
+				type: 'text',
+				renderComponents: ClientDetailRender,
+			},
 		}
 	};
 	
@@ -157,7 +158,7 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 			},
 			e_mail: {
 				title: 'Email',
-				type: 'text'
+				type: 'text',
 			},
 			state: {
 				title: 'State',
@@ -296,15 +297,15 @@ export class ClientDetails implements  OnInit, AfterViewInit {
     	document.getElementsByClassName('cust_part_no')['0'].style.width = '100px';
     	document.getElementsByClassName('drawing_no')['0'].style.width = '100px';
     	document.getElementsByClassName('unit')['0'].style.width = '100px';
-    	//order list render
+    	// //order list render
     	document.getElementsByClassName('order_code')['0'].style.width = '100px';
 	    document.getElementsByClassName('customer')['0'].style.width = '100px';
 	    document.getElementsByClassName('contact_name')['0'].style.width = '150px';
 	    document.getElementsByClassName('sum_one')['0'].style.width = '100px';
-    	//material list render
-	    document.getElementsByClassName('client_code')['0'].style.width = '100px';
-	    document.getElementsByClassName('e_mail')['0'].style.width = '180px';
-	    document.getElementsByClassName('state')['0'].style.width = '50px';
+    	// //material list render
+	    // document.getElementsByClassName('client_code')['0'].style.width = '100px';
+	    // document.getElementsByClassName('e_mail')['0'].style.width = '180px';
+	    // document.getElementsByClassName('state')['0'].style.width = '50px';
 
 		let el = this._elementRef.nativeElement.querySelector('.google-maps');
 		this.route.params
@@ -312,16 +313,22 @@ export class ClientDetails implements  OnInit, AfterViewInit {
 		.subscribe(res => {
 			this.inputClientCode = res.json()["items"][0]["client_code"];
 			this.inputClientName = res.json()["items"][0]["client_name"];
+			this.inputCountryCode = res.json()["items"][0]["country_code"];
+
 			this.inputEmail = res.json()["items"][0]["e_mail"];
 			this.inputWebsite = res.json()["items"][0]["web_site"];
+
 			this.inputPostalAddress1 = res.json()["items"][0]["address1"];
 			this.inputDeliveryAddress1 = res.json()["items"][0]["postal_address1"];
 			this.inputPostalAddress2 = res.json()["items"][0]["address2"];
 			this.inputDeliveryAddress2 = res.json()["items"][0]["postal_address2"];
+
 			this.inputPostalCity = res.json()["items"][0]["city"];
 			this.inputDeliveryCity = res.json()["items"][0]["postal_city"];
+
 			this.inputPostalState = res.json()["items"][0]["state"];
 			this.inputDeliveryState = res.json()["items"][0]["state"];
+
 			this.inputPostalPostcode = res.json()["items"][0]["postcode"];
 			this.inputDeliveryPostcode = res.json()["items"][0]["postal_postcode"];
 

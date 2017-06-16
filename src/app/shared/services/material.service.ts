@@ -74,5 +74,18 @@ export class MaterialService {
     )
   }
 
+  getMaterialIdByLocationId(id):Observable<Response>{
+    return this.http.get(
+      `${this.config.BASE_URL}/api/searchbarcode?location=` + id ,
+      {
+        headers:new Headers({
+          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+          }
+        )
+      }
+    )
+  }
+
+
 
 }
