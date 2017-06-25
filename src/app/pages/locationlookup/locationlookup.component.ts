@@ -67,7 +67,7 @@ export class LocationLookUp{
       confirmDelete: true
     },
     columns: {
-      code: {
+      material: {
         title: 'Material ID',
         type: 'text',
       },

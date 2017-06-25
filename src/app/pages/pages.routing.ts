@@ -4,6 +4,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service'
 
 import { LocationGuard } from '../shared/services/location.guard.ts'
+import { PalletGuard } from '../shared/services/pallet.guard.ts'
 import { LocationLookUpGuard } from '../shared/services/locationlookup.guard.ts'
 import { MaterialGuard } from '../shared/services/material.guard.ts'
 import { PartGuard } from '../shared/services/part.guard.ts'
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'order',canActivate: [AuthService], pathMatch: 'full' },
       
       { path: 'location',canActivate: [LocationGuard], loadChildren: 'app/pages/location/binlocation.module#BinLocationModule' },
+      { path: 'pallet',canActivate: [PalletGuard], loadChildren: 'app/pages/pallet/pallet.module#PalletModule' },
       { path: 'locationlookup',canActivate: [LocationLookUpGuard], loadChildren: 'app/pages/locationlookup/locationlookup.module#LocationLookUpModule' },
       //{ path: 'ui',canActivateChild: [AuthService], loadChildren: 'app/pages/ui/ui.module#UiModule' },
      

@@ -10,7 +10,7 @@ import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '
 
 @Injectable()
 
-export class LocationLookUpGuard implements CanActivate  {
+export class PalletLookUpGuard implements CanActivate  {
 
   constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, 
     private http:Http, private router: Router, private loginservice:LoginService){
@@ -26,7 +26,7 @@ export class LocationLookUpGuard implements CanActivate  {
      canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
        let activate_route = this.loginservice.getMenu();
-       if(activate_route[0]["menu_location_lookup"]==1){
+       if(activate_route[0]["menu_location"]==1){
          return true;
        }else{
          return false;
