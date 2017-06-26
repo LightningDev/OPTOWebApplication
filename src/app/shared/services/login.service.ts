@@ -11,8 +11,10 @@ import {Router} from '@angular/router';
 export class LoginService{
     private username:string;
     private password:string;
+    private screen_size:number;
     private menu:any;
-    private menu_render:string='[{"path": "pages","children": [{ "path": "order","data": {"menu": {"title": "Order","icon": "ion-ios-cart","selected": false,"expanded": false,"order": 50}}}'
+    private menu_render_user:string='[{"path": "pages","children": ['
+    private menu_render_device:string='[{"path": "pages","children": ['
     private userLoggedIn:boolean=false;
 
     constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http, private router: Router){
@@ -20,10 +22,10 @@ export class LoginService{
 
     }
     
-    Validate(username,password):Observable<Response> {
+    Validate(username,password,screen_size):Observable<Response> {
         return this.http.post(
             `${this.config.BASE_URL}/api/login`, 
-            JSON.stringify({"username": username, "password": password}),
+            JSON.stringify({"username": username, "password": password, "screen_size":screen_size}),
             {
                 headers:new Headers({
                     'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
@@ -67,47 +69,65 @@ export class LoginService{
         return this.menu;
     }
 
-    getMenuRenderByUser(){
-   
-       if(this.menu[0]["menu_part"]==1){
-           this.menu_render = this.menu_render + ', {"path": "part","data": {"menu": {"title": "Part","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
-       }
+    getMenuRenderByDevices(){
        if(this.menu[0]["menu_location"]==1){
-           this.menu_render = this.menu_render + ', {"path": "location","data": {"menu": {"title": "Location","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + '{"path": "location","data": {"menu": {"title": "Location","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_pallet"]==1){
-           this.menu_render = this.menu_render + ', {"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
-       }
-       if(this.menu[0]["menu_location_lookup"]==1){
-           this.menu_render = this.menu_render + ', {"path": "locationlookup","data": {"menu": {"title": "Location Look Up","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
-       }
-       if(this.menu[0]["menu_stock"]==1){
-           this.menu_render = this.menu_render + ', {"path": "stock","data": {"menu": {"title": "Stock","icon": "ion-cube","selected": false,"expanded": false,"order": 50}}}'
-       }
-       if(this.menu[0]["menu_material"]==1){
-           this.menu_render = this.menu_render + ', {"path": "material","data": {"menu": {"title": "Material","icon": "ion-pricetag","selected": false,"expanded": false,"order": 50}}}'
-       }
-       if(this.menu[0]["menu_client"]==1){
-           this.menu_render = this.menu_render + ', {"path": "clients","data": {"menu": {"title": "Client","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
-       }
-       if(this.menu[0]["menu_supplier"]==1){
-           this.menu_render = this.menu_render + ', {"path": "suppliers","data": {"menu": {"title": "Supplier","icon": "ion-android-contacts","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + ',{"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_clock_on"]==1){
-           this.menu_render = this.menu_render + ', {"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + ',{"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
+       }
+       
+       this.menu_render_device = this.menu_render_device + ']}]';
+       var object_menu_device = JSON.parse(this.menu_render_device);
+       return object_menu_device;
+    }
+
+    getMenuRenderByUser(){
+       if(this.menu[0]["menu_order"]==1){
+           this.menu_render_user = this.menu_render_user + '{"path": "order","data": {"menu": {"title": "Order","icon": "ion-ios-cart","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_part"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "part","data": {"menu": {"title": "Part","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_location"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "location","data": {"menu": {"title": "Location","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_pallet"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_location_lookup"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "locationlookup","data": {"menu": {"title": "Location Look Up","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_stock"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "stock","data": {"menu": {"title": "Stock","icon": "ion-cube","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_material"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "material","data": {"menu": {"title": "Material","icon": "ion-pricetag","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_client"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "clients","data": {"menu": {"title": "Client","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_supplier"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "suppliers","data": {"menu": {"title": "Supplier","icon": "ion-android-contacts","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_clock_on"]==1){
+           this.menu_render_user = this.menu_render_user + ',{"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_clock_tile"]==1){
-           this.menu_render = this.menu_render + ', {"path": "clocktiles","data": {"menu": {"title": "Clock Tiles","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_user = this.menu_render_user + ',{"path": "clocktiles","data": {"menu": {"title": "Clock Tiles","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_production_tile"]==1){
-           this.menu_render = this.menu_render + ', {"path": "productiontiles","data": {"menu": {"title": "Production Tiles","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_user = this.menu_render_user + ',{"path": "productiontiles","data": {"menu": {"title": "Production Tiles","icon": "ion-wrench","selected": false,"expanded": false,"order": 50}}}'
        }
       
        
 
-       this.menu_render = this.menu_render + ']}]';
-       var object_menu = JSON.parse(this.menu_render);
-       return object_menu;
+       this.menu_render_user = this.menu_render_user + ']}]';
+       var object_menu_user = JSON.parse(this.menu_render_user);
+       return object_menu_user;
     }
 
 }

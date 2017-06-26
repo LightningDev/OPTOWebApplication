@@ -21,6 +21,7 @@ export class Login {
   private noti:string='';
   private validate:boolean=false;
   private menu;
+  private screen_size:number;
 
   constructor(fb:FormBuilder, private loginservice: LoginService,private router:Router, private route: ActivatedRoute, ) {
     this.form = fb.group({
@@ -29,7 +30,6 @@ export class Login {
       'binlocation': false,
       'stock': false
     });
-
     this.username = this.form.controls['username'];
     this.password = this.form.controls['password'];
     this.binlocation = this.form.controls['binlocation'];
@@ -40,23 +40,27 @@ export class Login {
 
   public onSubmit(values:Object):void {
     if (this.form.valid ) {
-      this.loginservice.Validate(this.username.value,this.password.value).subscribe(res=>{
+      this.loginservice.Validate(this.username.value,this.password.value,screen.width).subscribe(res=>{
         if(res.json()["items"][0]!=null){
           if(res.json()["items"][0]["isLoggedIn"]==1){
             this.menu = res.json()["items"][0]["menus"];
             if(this.loginservice.Login(this.username.value,this.password.value,this.menu)){
               this.validate =true;
               if(this.validate){
-                if(this.stock.value){
-                  this.router.navigate(['pages/stock']);
-                }
-                else if(this.binlocation.value){
-                  this.router.navigate(['pages/location']);
-                }
-                else if(this.binlocation.value ==false){
-                  this.router.navigate(['pages']);
+                if( screen.width>420){
+                  if(this.stock.value){
+                    this.router.navigate(['pages/stock']);
+                  }
+                  else if(this.binlocation.value){
+                    this.router.navigate(['pages/location']);
+                  }
+                  else if(this.binlocation.value ==false){
+                    this.router.navigate(['pages/order']);
+                  }else{
+                    this.router.navigate(['login']);
+                  }
                 }else{
-                  this.router.navigate(['login']);
+                  this.router.navigate(['pages/location']);
                 }
               }else{
                 this.noti = "Wrong username and password, please try again !"
@@ -64,7 +68,6 @@ export class Login {
               }
             }else{
               this.validate =false;
-              console.log(this.validate);
               return;
             }
           }else{
