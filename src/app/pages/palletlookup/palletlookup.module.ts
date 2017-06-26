@@ -6,7 +6,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { PalletService } from '../../shared/services/pallet.service';
 
 import { routing } from './pallet.routing';
-import { Pallet } from './pallet.component';
+import { PalletLookUp } from './palletlookup.component';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { Pallet } from './pallet.component';
     routing
   ],
   declarations: [
-    Pallet
+    PalletLookUp
   ],
   providers: [
     PalletService

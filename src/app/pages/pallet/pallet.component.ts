@@ -54,10 +54,15 @@ export class Pallet {
 			"action" : "0"
 		} 
 		this.service.sendPallet(json).subscribe(res => {
-    		alert(res.json().message);
-			this.inputJob="";
-			this.inputBinLocation="";
-			console.log(json);
+			if(this.inputBinLocation == "" && this.currentRadio == "PalletToLocation"){
+				alert("Input location field cannot be empty");
+			}else if(this.inputJob == "" && this.currentRadio == "JobToPallet"){
+				alert("Input job field cannot be empty");
+			}else{
+	    		alert(res.json().message);
+				this.inputJob="";
+				this.inputBinLocation="";
+			}
     	})
 
 	}
@@ -72,10 +77,15 @@ export class Pallet {
 
 		} 
 		this.service.sendPallet(json).subscribe(res => {
-    		alert(res.json().message);
-    		this.inputJob="";
-			this.inputBinLocation="";
-			console.log(json);
+    		if(this.inputBinLocation == "" && this.currentRadio == "PalletToLocation"){
+				alert("Input location field cannot be empty");
+			}else if(this.inputJob == "" && this.currentRadio == "JobToPallet"){
+				alert("Input job field cannot be empty");
+			}else{
+	    		alert(res.json().message);
+				this.inputJob="";
+				this.inputBinLocation="";
+			}
     	})
 
 	}

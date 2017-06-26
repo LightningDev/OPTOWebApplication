@@ -1,6 +1,6 @@
 import { Routes, RouterModule }  from '@angular/router';
 
-import { Pallet } from './pallet.component';
+import { PalletLookUp } from './palletlookup.component';
 
 import { ModuleWithProviders } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { ModuleWithProviders } from '@angular/core';
 export const routes: Routes = [
   {
     path: '',
-    component: Pallet,
+    component: PalletLookUp,
     children: [
       //{ path: 'details', component: ClientDetails }
     ]

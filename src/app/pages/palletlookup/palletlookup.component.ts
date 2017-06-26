@@ -9,7 +9,7 @@ import 'style-loader!./buttons.scss';
   templateUrl: './pallet.html',
 })
 
-export class Pallet {
+export class PalletLookUp {
 
 	currentRadio:string='';
 	inputPallet:string='';
