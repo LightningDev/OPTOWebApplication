@@ -1,4 +1,4 @@
-import {Component, HostListener, ElementRef} from '@angular/core';
+import {Component, HostListener, ElementRef, AfterViewInit} from '@angular/core';
 import { EmployeeService } from '../../shared/services/employee.service';
 import { ClockOnService } from '../../shared/services/clockon.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import 'style-loader!./switch.scss';
 })
 
 
-export class ClockOn {
+export class ClockOn implements AfterViewInit {
 
 	private curr_code:string="";
 	private curr_page:number;
@@ -57,6 +57,15 @@ export class ClockOn {
 			}
 		});
 	}
+
+	ngAfterViewInit(){
+		if(screen.width > 420){
+      		document.getElementsByClassName('form-group')['0'].style.width = '150px';
+			document.getElementsByClassName('form-group')['1'].style.width = '150px';
+			document.getElementsByClassName('form-group')['2'].style.width = '150px';      		
+      		document.getElementsByClassName('widgets')['0'].style.width = '500px';
+    	}
+  	}
 
 	One(event): void {
 		this.curr_code=this.curr_code+"1";

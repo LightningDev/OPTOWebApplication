@@ -1,6 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
 import { PalletService } from '../../shared/services/pallet.service';
-import { ModalDirective } from 'ng2-bootstrap';
 import 'style-loader!./buttons.scss';
 
 @Component({
@@ -9,26 +8,26 @@ import 'style-loader!./buttons.scss';
   templateUrl: './pallet.html',
 })
 
-export class Pallet {
+export class Pallet implements AfterViewInit{
 
 	currentRadio:string='';
 	inputPallet:string='';
 	inputBinLocation:string='';
 	inputJob:string='';
 
-	@ViewChild('childModal') childModal: ModalDirective;
-
 	constructor(private service: PalletService) {
 		
 	}
 
-	showChildModal(): void {
-		this.childModal.show();
-	}
-
-	hideChildModal(): void {
-		this.childModal.hide();
-	}
+	ngAfterViewInit(){
+		if(screen.width > 420){
+      		document.getElementsByClassName('col-xs-6')['0'].style.width = '150px';
+      		document.getElementsByClassName('col-xs-6')['1'].style.width = '150px';
+      		document.getElementsByClassName('form-group')['0'].style.width = '300px';
+      		document.getElementsByClassName('form-group')['1'].style.width = '300px';
+      		document.getElementsByClassName('widgets')['0'].style.width = '400px';
+    	}
+  	}
 
 	radio_stock(event) {    
 	    this.currentRadio = event.currentTarget.defaultValue;

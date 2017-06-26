@@ -1,6 +1,6 @@
 <div class="widgets">
 	<div>
-		<ba-card title="Location Details" baCardClass="with-scroll">
+		<ba-card baCardClass="with-scroll">
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="row">
@@ -9,32 +9,33 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-6 col-sm-4">
+						<div class="col-xs-6 col-sm-4">
 							<label class="radio-inline custom-radio nowrap">
 								<input type="radio" name="inlineRadioOptions" id="inputBarcode" value="inputBarcode" [(ngModel)]="inputBarcode" (click)="radio_stock($event)">
 								<span>BarCode</span>
 							</label>
 						</div>
-						<div class="col-6 col-sm-4">
+						<div class="col-xs-6 col-sm-4">
 							<label class="radio-inline custom-radio nowrap">
 								<input type="radio" name="inlineRadioOptions" id="inputBinLocation" value="inputBinLocation" [(ngModel)]="inputBinLocation" (click)="radio_stock($event)">
 								<span>Location</span>
 							</label>
 						</div>
+						<div class="col-xs-6 col-sm-4">
+							<label class="radio-inline custom-radio nowrap">
+								<button style="width:70px;height:20px" type="button" id="in" class="btn btn-info" (click)="check($event)"> Check </button>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<label for="codeField">{{markup}}</label>
+							<input type="text" class="form-control" id="codeField" placeholder="Code" [(ngModel)]="codeField">
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<label for="codeField">{{markup}}</label>
-					<div class="row">
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="codeField" placeholder="Code" [(ngModel)]="codeField">
-						</div>
-						<div class="col-sm-6">
-							<div class="button-wrapper">
-								<button type="button" id="in" class="btn btn-info" (click)="check($event)"> Check </button>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 

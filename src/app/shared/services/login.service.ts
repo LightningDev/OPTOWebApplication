@@ -71,13 +71,13 @@ export class LoginService{
 
     getMenuRenderByDevices(){
        if(this.menu[0]["menu_location"]==1){
-           this.menu_render_device = this.menu_render_device + '{"path": "location","data": {"menu": {"title": "Location","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + '{"path": "location","data": {"menu": {"title": "Location","icon": "ion-ios-box","selected": true,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_pallet"]==1){
-           this.menu_render_device = this.menu_render_device + ',{"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + ',{"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": true,"expanded": false,"order": 50}}}'
        }
        if(this.menu[0]["menu_clock_on"]==1){
-           this.menu_render_device = this.menu_render_device + ',{"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": false,"expanded": false,"order": 50}}}'
+           this.menu_render_device = this.menu_render_device + ',{"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": true,"expanded": false,"order": 50}}}'
        }
        
        this.menu_render_device = this.menu_render_device + ']}]';

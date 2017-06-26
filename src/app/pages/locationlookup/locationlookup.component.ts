@@ -12,7 +12,7 @@ import 'style-loader!./smartTables.scss';
   templateUrl: './locationlookup.html',
 })
 
-export class LocationLookUp{
+export class LocationLookUp implements AfterViewInit{
 
   inputBarcode:string="";
   inputBinLocation:string="";
@@ -25,20 +25,7 @@ export class LocationLookUp{
   tableName:string;
 
   settings1 = {
-    add: {
-      addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-      createButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="ion-edit"></i>',
-      saveButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="hidden"></i>',
-      confirmDelete: true
-    },
+    actions: false,
     columns: {
       code: {
         title: 'Location ID',
@@ -52,20 +39,7 @@ export class LocationLookUp{
   };
 
   settings2 = {
-    add: {
-      addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-      createButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="ion-edit"></i>',
-      saveButtonContent: '<i class="ion-checkmark"></i>',
-      cancelButtonContent: '<i class="ion-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="hidden"></i>',
-      confirmDelete: true
-    },
+    actions: false,
     columns: {
       material: {
         title: 'Material ID',
@@ -82,8 +56,16 @@ export class LocationLookUp{
   source1: LocalDataSource = new LocalDataSource();
   source2: LocalDataSource = new LocalDataSource();
   constructor(private locationlookupservice: LocationLookUpService, private materialservice: MaterialService) {
-    
+
   }
+  ngAfterViewInit(){
+    if(screen.width > 420){
+         
+          document.getElementsByClassName('widgets')['0'].style.width = '650px';
+          document.getElementById('material').style.width='500px';
+          document.getElementById('location').style.width='500px';
+      }
+    }
 
   radio_stock(event) {    
     this.currentRadio = event.currentTarget.defaultValue;

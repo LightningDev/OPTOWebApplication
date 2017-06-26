@@ -1,6 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, AfterViewInit} from '@angular/core';
 import { BinLocationService } from '../../shared/services/binlocation.service';
-import { ModalDirective } from 'ng2-bootstrap';
 import 'style-loader!./buttons.scss';
 
 @Component({
@@ -9,24 +8,24 @@ import 'style-loader!./buttons.scss';
   templateUrl: './binlocation.html',
 })
 
-export class BinLocation {
+export class BinLocation implements AfterViewInit{
 
 	inputBarcode:string;
 	inputBinLocation:string;
 
-	@ViewChild('childModal') childModal: ModalDirective;
-
 	constructor(private service: BinLocationService) {
-		
+	  
 	}
 
-	showChildModal(): void {
-		this.childModal.show();
-	}
-
-	hideChildModal(): void {
-		this.childModal.hide();
-	}
+	ngAfterViewInit(){
+		if(screen.width > 420){
+      		document.getElementsByClassName('col-sm-6')['0'].style.width = '150px';
+      		document.getElementsByClassName('col-sm-6')['1'].style.width = '150px';
+      		document.getElementsByClassName('form-group')['0'].style.width = '300px';
+      		document.getElementsByClassName('form-group')['1'].style.width = '300px';
+      		document.getElementsByClassName('widgets')['0'].style.width = '400px';
+    	}
+  	}
 
 	button_OUT(event) {
 		//alert("OUT CLICKED");

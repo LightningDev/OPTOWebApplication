@@ -1,4 +1,4 @@
-import {Component, ViewChild, HostListener,ElementRef} from '@angular/core';
+import {Component, ViewChild, HostListener,ElementRef, AfterViewInit} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import { StockService } from '../../shared/services/stock.service';
 import { DivisionService } from '../../shared/services/division.service';
@@ -14,7 +14,7 @@ import 'style-loader!./buttons.scss';
   templateUrl: './stock.html',
 })
 
-export class Stock {
+export class Stock implements AfterViewInit{
 
 	divisions: Observable<Array<any>>;
 	employees: Observable<Array<any>>;
@@ -32,6 +32,13 @@ export class Stock {
     	this.employees = this.empService.getEmployees().map(response => response.json()["employees"]);
     	$("#stockInOut").prop("checked", true);
 	}
+
+	ngAfterViewInit(){
+		if(screen.width > 420){
+      	
+      		document.getElementsByClassName('widgets')['0'].style.width = '400px';
+    	}
+  	}
 
 	radio_stock(event) {		
 		this.currentRadio = event.currentTarget.defaultValue;
