@@ -4,7 +4,6 @@ import 'style-loader!./buttons.scss';
 
 @Component({
 	selector: 'pallet',
-	styleUrls: ['./modals.scss'],
 	templateUrl: './pallet.html',
 })
 
