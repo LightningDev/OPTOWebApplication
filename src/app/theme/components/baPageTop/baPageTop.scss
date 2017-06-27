@@ -22,6 +22,20 @@
   }
 }
 
+.heading-title {
+  color: $sidebar-text;
+  display: block;
+  font-size: 24px;
+  font-family: $font-family;
+  white-space: nowrap;
+  float: left;
+  outline: none !important;
+  line-height: 60px;
+   span {
+    color: $primary;
+  }
+}
+
 a.al-logo {
   color: $sidebar-text;
   display: block;
