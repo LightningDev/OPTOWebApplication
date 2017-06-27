@@ -1,13 +1,13 @@
 <div class="widgets">
 	<ba-card baCardClass="with-scroll">
 		<div class="row show-grid ng-scope">
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-sm-6 col-md-6">
 				<label class="radio-inline custom-radio nowrap">
 					<input type="radio" name="inlineRadioOptions" id="radio1" value="PalletToLocation"(click)="radio_stock($event)">
 					<span>Pallet to Location</span>
 				</label>
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-6 col-sm-6 col-md-6">
 				<label class="radio-inline custom-radio nowrap">
 					<input type="radio" name="inlineRadioOptions" id="radio2" value="JobToPallet" (click)="radio_stock($event)">
 					<span>Job to Pallet</span>
@@ -15,6 +15,17 @@
 			</div>
 		</div>
 	</ba-card>
+	<div id="switch-button">
+		<ba-card baCardClass="with-scroll">
+			<div class="onoffswitch">
+		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+		    <label class="onoffswitch-label" for="myonoffswitch">
+		        <span class="onoffswitch-inner" (click)="Switch($event)"></span>
+		        <span class="onoffswitch-switch"(click)="Switch($event)"></span>
+		    </label>
+		</div>
+		</ba-card>
+	</div>
 	<div id="PalletToLocation" style="display: none;">
 		<ba-card baCardClass="with-scroll">
 			<div class="form-group">
@@ -30,14 +41,7 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<div class="button-wrapper">
-							<button type="button" id="in" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">IN</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<div class="button-wrapper">
-							<button type="button" id="out" class="btn btn-danger btn-lg button-full-width" (click)="button_OUT($event)">OUT</button>
+							<button type="button" id="in" class="btn btn-success btn-lg button-full-width" (click)="Update($event)">UPDATE</button>
 						</div>
 					</div>
 				</div>
@@ -59,14 +63,7 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<div class="button-wrapper">
-							<button type="button" id="in" class="btn btn-success btn-lg button-full-width" (click)="button_IN($event)">IN</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<div class="button-wrapper">
-							<button type="button" id="out" class="btn btn-danger btn-lg button-full-width" (click)="button_OUT($event)">OUT</button>
+							<button type="button" id="in" class="btn btn-success btn-lg button-full-width" (click)="Update($event)">UPDATE</button>
 						</div>
 					</div>
 				</div>
