@@ -35,6 +35,7 @@ export class Pallet implements AfterViewInit{
 			document.getElementById('PalletToLocation').style.display = 'block';
 			document.getElementById('JobToPallet').style.display = 'none';
 			if(this.inout=="out"){
+				this.inputBinLocation="";
 				document.getElementById('inputBinLocation').style.display = 'none';
 				document.getElementById('BinLocation').style.display = 'none';
 			}else{
@@ -53,6 +54,7 @@ export class Pallet implements AfterViewInit{
 		if(this.inout=="in"){
 			this.inout="out";
 			if(this.inout=="out"){
+				this.inputBinLocation="";
 				document.getElementById('inputBinLocation').style.display = 'none';
 				document.getElementById('BinLocation').style.display = 'none';
 			}else{
