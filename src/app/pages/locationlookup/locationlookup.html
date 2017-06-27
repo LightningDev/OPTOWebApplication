@@ -2,13 +2,15 @@
 	<div>
 		<ba-card>
 			<div class="row show-grid ng-scope">
-				<div class="col-xs-6 col-md-4">
+				<div class="col-xs-6 col-md-5">
 					<label class="radio-inline custom-radio nowrap">
 						<input type="radio" name="inlineRadioOptions" id="inputBarcode" value="inputBarcode" [(ngModel)]="inputBarcode" (click)="radio_stock($event)">
 						<span>BarCode</span>
 					</label>
 				</div>
-				<div class="col-xs-6 col-md-4">
+				<div class="col-md-2">
+				</div>
+				<div class="col-xs-6 col-md-5">
 					<label class="radio-inline custom-radio nowrap">
 						<input type="radio" name="inlineRadioOptions" id="inputBinLocation" value="inputBinLocation" [(ngModel)]="inputBinLocation" (click)="radio_stock($event)">
 						<span>Location</span>
@@ -18,10 +20,12 @@
 		</ba-card>
 		<ba-card>
 			<div class="row show-grid ng-scope">
-				<div class="col-xs-6 col-md-4" id="code">
+				<div class="col-xs-6 col-md-5" id="code">
 					<input type="text" class="form-control" id="codeField" placeholder="Code" [(ngModel)]="codeField">
 				</div>
-				<div class="col-xs-4 col-md-4">
+				<div class="col-md-2">
+				</div>
+				<div class="col-xs-4 col-md-5">
 					<label class="radio-inline custom-radio nowrap">
 						<button style="width:70px;height:40px" type="button" id="in" class="btn btn-info" (click)="check($event)"> Search </button>
 					</label>
