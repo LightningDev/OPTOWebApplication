@@ -6,6 +6,7 @@ import { AuthService } from '../shared/services/auth.service'
 import { LocationGuard } from '../shared/services/location.guard.ts'
 import { PalletGuard } from '../shared/services/pallet.guard.ts'
 import { LocationLookUpGuard } from '../shared/services/locationlookup.guard.ts'
+import { PalletLookUpGuard } from '../shared/services/palletlookup.guard.ts'
 import { MaterialGuard } from '../shared/services/material.guard.ts'
 import { PartGuard } from '../shared/services/part.guard.ts'
 import { OrderGuard } from '../shared/services/order.guard.ts'
@@ -39,6 +40,7 @@ export const routes: Routes = [
       { path: 'location',canActivate: [LocationGuard], loadChildren: 'app/pages/location/binlocation.module#BinLocationModule' },
       { path: 'pallet',canActivate: [PalletGuard], loadChildren: 'app/pages/pallet/pallet.module#PalletModule' },
       { path: 'locationlookup',canActivate: [LocationLookUpGuard], loadChildren: 'app/pages/locationlookup/locationlookup.module#LocationLookUpModule' },
+      { path: 'palletlookup',canActivate: [PalletLookUpGuard], loadChildren: 'app/pages/palletlookup/palletlookup.module#PalletLookUpModule' },
       //{ path: 'ui',canActivateChild: [AuthService], loadChildren: 'app/pages/ui/ui.module#UiModule' },
      
 

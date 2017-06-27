@@ -15,16 +15,16 @@ export class PalletLookUpService {
 	constructor(@Inject ('APP_CONFIG_TOKEN') private config:AppConfig, private http:Http){
   }
 
-  getLocationByMaterialId(id):Observable<Response>{
-    return this.http.get(
-      `${this.config.BASE_URL}/api/palletlookup?barcode=` + id ,
-      {
-        headers:new Headers({
-          'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
-          }
-        )
-      }
-    )
-  }
+  // getLocationByMaterialId(id):Observable<Response>{
+  //   return this.http.get(
+  //     `${this.config.BASE_URL}/api/palletlookup?barcode=` + id ,
+  //     {
+  //       headers:new Headers({
+  //         'authorization':"Basic " + btoa(this.config.APP_ID + ":" + this.config.APP_PASSWORD)
+  //         }
+  //       )
+  //     }
+  //   )
+  // }
 
 }

@@ -3,10 +3,11 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { PalletService } from '../../shared/services/pallet.service';
 
-import { routing } from './pallet.routing';
+import { routing } from './palletlookup.routing';
 import { PalletLookUp } from './palletlookup.component';
+
+import { PalletLookUpService } from '../../shared/services/palletlookup.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { PalletLookUp } from './palletlookup.component';
     PalletLookUp
   ],
   providers: [
-    PalletService
+    PalletLookUpService
   ]
 })
-export class PalletModule {}
+export class PalletLookUpModule {}

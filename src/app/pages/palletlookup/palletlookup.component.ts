@@ -1,79 +1,142 @@
-import {Component, ViewChild} from '@angular/core';
-import { PalletService } from '../../shared/services/pallet.service';
-import { ModalDirective } from 'ng2-bootstrap';
-import 'style-loader!./buttons.scss';
+import {Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import {Router} from '@angular/router';
+
+import { PalletLookUpService } from '../../shared/services/palletlookup.service'
+
+
+import 'style-loader!./smartTables.scss';
 
 @Component({
-  selector: 'pallet',
-  styleUrls: ['./modals.scss'],
-  templateUrl: './pallet.html',
+  selector: 'pallet-lookup',
+  templateUrl: './palletlookup.html',
 })
 
-export class PalletLookUp {
+export class PalletLookUp implements AfterViewInit{
 
-	currentRadio:string='';
-	inputPallet:string='';
-	inputBinLocation:string='';
-	inputJob:string='';
+  inputJob:string="";
+  inputBinLocation:string="";
+  inputPallet:string="";
+  currentRadio: string="";
+  codeField:string="";
 
-	@ViewChild('childModal') childModal: ModalDirective;
+  markup:string="Default";
 
-	constructor(private service: PalletService) {
-		
-	}
+  status:string="";
+  tableName:string;
 
-	showChildModal(): void {
-		this.childModal.show();
-	}
+  //search by Job
+  settings1 = {
+    actions: false,
+    columns: {
+      code: {
+        title: 'Location ID',
+        type: 'text',
+      },
+      date: {
+        title: 'Pallet ID',
+        type: 'text',
+      },
+    }
+  };
 
-	hideChildModal(): void {
-		this.childModal.hide();
-	}
+  //search by Location
+  settings2 = {
+    actions: false,
+    columns: {
+      material: {
+        title: 'Pallet',
+        type: 'text',
+      },
+      date: {
+        title: 'Job',
+        type: 'text',
+      },
+    }
+  };
 
-	radio_stock(event) {    
-	    this.currentRadio = event.currentTarget.defaultValue;
-	    if(this.currentRadio=="PalletToLocation"){
-	    	 document.getElementById('PalletToLocation').style.display = 'block';
-             document.getElementById('JobToPallet').style.display = 'none';
-	     }
+  //search by Pallet
+  settings3 = {
+    actions: false,
+    columns: {
+      material: {
+        title: 'Location',
+        type: 'text',
+      },
+      date: {
+        title: 'Job',
+        type: 'text',
+      },
+    }
+  };
 
-	     if(this.currentRadio=="JobToPallet"){
-	     	 document.getElementById('PalletToLocation').style.display = 'none';
-             document.getElementById('JobToPallet').style.display = 'block';
-	     }
-  	}
+
+  source1: LocalDataSource = new LocalDataSource();
+  source2: LocalDataSource = new LocalDataSource();
+  source3: LocalDataSource = new LocalDataSource();
+  constructor(private palletlookupservice: PalletLookUpService) {
+
+  }
+
+  ngAfterViewInit(){
+    if(screen.width > 420){
+          document.getElementsByClassName('widgets')['0'].style.width = '400px';
+      }
+    }
+
+  radio_stock(event) {    
+    this.currentRadio = event.currentTarget.defaultValue;
+
+    if(this.currentRadio=="Job"){
+       this.markup="Job for Loc and Pallet";
+       // document.getElementById("codeField").placeholder="Job for Loc and Pallet";
+     }
+
+    if(this.currentRadio=="Location"){
+       this.markup="Loc for Pallet and Job";
+       //document.getElementById("codeField").placeholder="Loc for Pallet and Job";
+     }
+
+    if(this.currentRadio=="Pallet"){
+       this.markup="Pallet for Loc and Job";
+       //document.getElementById("codeField").placeholder="Pallet for Loc and Job";
+     }
+  }
 
 
+  // check(event){
+  //  if(this.currentRadio!=""){
+  //    if(this.codeField!=""){ 
+  //      if(this.currentRadio=="inputBarcode"){
+  //        this.locationlookupservice.getLocationByMaterialId(this.codeField).subscribe(res=>{
+  //          if(res.json()["items"][0]["code"]!=" "){
+  //            this.source1.load(res.json()["items"]);
+  //             document.getElementById('material').style.display = 'block';
+  //             document.getElementById('location').style.display = 'none';
+  //           }else{
+  //             alert("Wrong code id")
+  //           }
+  //        })
+  //      }
 
-	button_OUT(event) {
-		//alert("OUT CLICKED");
-		let json = {
-			"pallet_code": this.inputPallet,
-			"bin_location" : this.inputBinLocation,
-			"job":this.inputJob,
-			"action" : "0"
-		} 
-		this.service.sendPallet(json).subscribe(res => {
-    		alert(res.json().message);
-			this.inputJob="";
-    	})
+  //      if(this.currentRadio=="inputBinLocation"){
+  //        this.materialservice.getMaterialIdByLocationId(this.codeField).subscribe(res=>{
+  //          if(res.json()["items"][0]["code"]!=" "){
+  //            this.source2.load(res.json()["items"]);
+  //            document.getElementById('material').style.display = 'none';
+  //            document.getElementById('location').style.display = 'block';
+  //          }else{
+  //             alert("Wrong code id")
+  //          }
+  //        })
+  //      }
+  //    }else{
+  //      alert("The input field cannot be empty");
+  //    }
+  //  }else{
+  //     alert("Please select input type");
+  //  }
 
-	}
-
-	button_IN(event) {
-		//alert("IN CLICKED");
-		let json = {
-			"pallet_code": this.inputPallet,
-			"bin_location" : this.inputBinLocation,
-			"job":this.inputJob,
-			"action" : "1"
-
-		} 
-		this.service.sendPallet(json).subscribe(res => {
-    		alert(res.json().message);
-    		this.inputJob="";
-    	})
-
-	}
+  // }
 
 }

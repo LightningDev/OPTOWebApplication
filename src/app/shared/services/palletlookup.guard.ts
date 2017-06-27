@@ -26,7 +26,7 @@ export class PalletLookUpGuard implements CanActivate  {
      canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
        let activate_route = this.loginservice.getMenu();
-       if(activate_route[0]["menu_location"]==1){
+       if(activate_route[0]["menu_pallet_lookup"]==1){
          return true;
        }else{
          return false;

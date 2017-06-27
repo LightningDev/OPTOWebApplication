@@ -61,9 +61,9 @@ export class LocationLookUp implements AfterViewInit{
   ngAfterViewInit(){
     if(screen.width > 420){
          
-          document.getElementsByClassName('widgets')['0'].style.width = '650px';
-          document.getElementById('material').style.width='500px';
-          document.getElementById('location').style.width='500px';
+          document.getElementsByClassName('widgets')['0'].style.width = '500px';
+          document.getElementById('material').style.width='400px';
+          document.getElementById('location').style.width='400px';
       }
     }
 
