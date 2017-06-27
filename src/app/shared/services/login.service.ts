@@ -76,6 +76,12 @@ export class LoginService{
        if(this.menu[0]["menu_pallet"]==1){
            this.menu_render_device = this.menu_render_device + ',{"path": "pallet","data": {"menu": {"title": "Pallet","icon": "ion-ios-box","selected": true,"expanded": false,"order": 50}}}'
        }
+       if(this.menu[0]["menu_location_lookup"]==1){
+           this.menu_render_device = this.menu_render_device + ',{"path": "locationlookup","data": {"menu": {"title": "Location Look Up","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+       }
+       if(this.menu[0]["menu_pallet_lookup"]==1){
+           this.menu_render_device = this.menu_render_device + ',{"path": "palletlookup","data": {"menu": {"title": "Pallet Look Up","icon": "ion-ios-box","selected": false,"expanded": false,"order": 50}}}'
+       }
        if(this.menu[0]["menu_clock_on"]==1){
            this.menu_render_device = this.menu_render_device + ',{"path": "clockon","data": {"menu": {"title": "Clock On","icon": "ion-ios-clock","selected": true,"expanded": false,"order": 50}}}'
        }
