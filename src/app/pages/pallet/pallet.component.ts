@@ -34,6 +34,13 @@ export class Pallet implements AfterViewInit{
 		if(this.currentRadio=="PalletToLocation"){
 			document.getElementById('PalletToLocation').style.display = 'block';
 			document.getElementById('JobToPallet').style.display = 'none';
+			if(this.inout=="out"){
+				document.getElementById('inputBinLocation').style.display = 'none';
+				document.getElementById('BinLocation').style.display = 'none';
+			}else{
+				document.getElementById('inputBinLocation').style.display = 'block';
+				document.getElementById('BinLocation').style.display = 'block';
+			}
 		}
 
 		if(this.currentRadio=="JobToPallet"){
@@ -45,10 +52,23 @@ export class Pallet implements AfterViewInit{
 	Switch(event) {
 		if(this.inout=="in"){
 			this.inout="out";
+			if(this.inout=="out"){
+				document.getElementById('inputBinLocation').style.display = 'none';
+				document.getElementById('BinLocation').style.display = 'none';
+			}else{
+				document.getElementById('inputBinLocation').style.display = 'block';
+				document.getElementById('BinLocation').style.display = 'block';
+			}
 		}else{
 			this.inout="in";
+			if(this.inout=="in"){
+				document.getElementById('inputBinLocation').style.display = 'block';
+				document.getElementById('BinLocation').style.display = 'block';
+			}else{
+				document.getElementById('inputBinLocation').style.display = 'none';
+				document.getElementById('BinLocation').style.display = 'none';
+			}
 		}
-		console.log(this.inout);
 	}
 
 	Update(event)	{
@@ -97,7 +117,4 @@ export class Pallet implements AfterViewInit{
 		}
 
 	}
-
-	}
-
 }

@@ -80,6 +80,7 @@ export class LocationLookUp implements AfterViewInit{
 
 
   check(event){
+   this.codeField = this.codeField.replace(/\s/g, '');
    if(this.currentRadio!=""){
      if(this.codeField!=""){ 
        if(this.currentRadio=="inputBarcode"){
