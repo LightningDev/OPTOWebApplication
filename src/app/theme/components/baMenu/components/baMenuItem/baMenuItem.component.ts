@@ -10,9 +10,11 @@ export class BaMenuItem {
 
   @Input() menuItem:any;
   @Input() child:boolean = false;
+  
 
   @Output() itemHover = new EventEmitter<any>();
   @Output() toggleSubMenu = new EventEmitter<any>();
+  @Output() hideMenuItem = new EventEmitter<any>();
 
   public onHoverItem($event):void {
     this.itemHover.emit($event);
@@ -22,5 +24,11 @@ export class BaMenuItem {
     $event.item = item;
     this.toggleSubMenu.emit($event);
     return false;
+  }
+
+  public collaspedMenu($event):void{
+    console.log('collaspedMenu');
+    console.log($event);
+    this.hideMenuItem.emit($event);
   }
 }

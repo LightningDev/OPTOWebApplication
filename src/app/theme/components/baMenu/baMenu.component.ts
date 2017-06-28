@@ -17,6 +17,7 @@ export class BaMenu {
   @Input() menuHeight: number;
 
   @Output() expandMenu = new EventEmitter<any>();
+  @Output() public hideSideBarVal: EventEmitter = new EventEmitter<any>();
 
   public menuItems: any[];
   protected _menuItemsSub: Subscription;
@@ -83,5 +84,10 @@ export class BaMenu {
     }
 
     return false;
+  }
+
+  public hideMenu($event): void{
+    this.hideSideBarVal.next(true);
+    this._state.notifyDataChanged('menu.isCollapsed', true);
   }
 }

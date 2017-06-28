@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener} from '@angular/core';
+import {Component, Input, ElementRef, HostListener} from '@angular/core';
 import {GlobalState} from '../../../global.state';
 import {layoutSizes} from '../../../theme';
 
@@ -9,12 +9,14 @@ import 'style-loader!./baSidebar.scss';
   templateUrl: './baSidebar.html'
 })
 export class BaSidebar {
+
+  @Input() menuItemClick: boolean = true;
+
   public menuHeight:number;
   public isMenuCollapsed:boolean = false;
   public isMenuShouldCollapsed:boolean = false;
 
   constructor(private _elementRef:ElementRef, private _state:GlobalState) {
-
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
@@ -34,7 +36,7 @@ export class BaSidebar {
   public onWindowResize():void {
 
     var isMenuShouldCollapsed = this._shouldMenuCollapse();
-
+    console.log(this._shouldMenuCollapse());
     if (this.isMenuShouldCollapsed !== isMenuShouldCollapsed) {
       this.menuCollapseStateChange(isMenuShouldCollapsed);
     }
@@ -63,4 +65,5 @@ export class BaSidebar {
   private _shouldMenuCollapse():boolean {
     return window.innerWidth <= layoutSizes.resWidthCollapseSidebar;
   }
+
 }
