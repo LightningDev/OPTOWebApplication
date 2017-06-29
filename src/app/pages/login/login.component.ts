@@ -47,6 +47,7 @@ export class Login {
             if(this.loginservice.Login(this.username.value,this.password.value,this.menu)){
               this.validate =true;
               if(this.validate){
+                 document.getElementById('submit').disabled=true;
                 if( screen.width>420){
                   if(this.stock.value){
                     this.router.navigate(['pages/stock']);
@@ -82,4 +83,5 @@ export class Login {
       return;
     }
   }
+
 }

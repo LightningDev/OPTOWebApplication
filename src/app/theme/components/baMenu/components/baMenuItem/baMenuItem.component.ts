@@ -27,8 +27,6 @@ export class BaMenuItem {
   }
 
   public collaspedMenu($event):void{
-    console.log('collaspedMenu');
-    console.log($event);
     this.hideMenuItem.emit($event);
   }
 }

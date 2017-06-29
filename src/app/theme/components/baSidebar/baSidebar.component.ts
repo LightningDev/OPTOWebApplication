@@ -36,7 +36,7 @@ export class BaSidebar {
   public onWindowResize():void {
 
     var isMenuShouldCollapsed = this._shouldMenuCollapse();
-    console.log(this._shouldMenuCollapse());
+    // console.log(this._shouldMenuCollapse());
     if (this.isMenuShouldCollapsed !== isMenuShouldCollapsed) {
       this.menuCollapseStateChange(isMenuShouldCollapsed);
     }

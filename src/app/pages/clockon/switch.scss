@@ -18,12 +18,12 @@
     font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
     box-sizing: border-box;
 }
-.onoffswitch-inner:before {
+.onoffswitch-inner-clock:before {
     content: "Yes";
     padding-left: 10px;
     background-color: #34A7C1; color: #FFFFFF;
 }
-.onoffswitch-inner:after {
+.onoffswitch-inner-clock:after {
     content: "No";
     padding-right: 10px;
     background-color: #EEEEEE; color: #999999;
