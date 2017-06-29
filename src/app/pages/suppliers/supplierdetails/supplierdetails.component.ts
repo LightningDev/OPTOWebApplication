@@ -44,21 +44,7 @@ export class SupplierDetails {
 	data:any;
 
 	settings1 = {
-		add: {
-			addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-			createButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		edit: {
-			editButtonContent: '<i class="ion-edit"></i>',
-			saveButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
-			confirmDelete: true
-		},
-
+		actions: false,
 		columns: {
 			code: {
 				title: 'Code',
@@ -84,21 +70,7 @@ export class SupplierDetails {
 	};
 
 	settings2 = {
-		add: {
-			addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-			createButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		edit: {
-			editButtonContent: '<i class="ion-edit"></i>',
-			saveButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
-			confirmDelete: true
-		},
-
+		actions: false,
 		columns: {
 			contact_name: {
 				title: 'Contact Name',
@@ -124,21 +96,7 @@ export class SupplierDetails {
 	};
 	
 	settings3 = {
-		add: {
-			addButtonContent: '<i class="ion-ios-plus-outline"></i>',
-			createButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		edit: {
-			editButtonContent: '<i class="ion-edit"></i>',
-			saveButtonContent: '<i class="ion-checkmark"></i>',
-			cancelButtonContent: '<i class="ion-close"></i>',
-		},
-		delete: {
-			deleteButtonContent: '<i class="ion-trash-a"></i>',
-			confirmDelete: true
-		},
-
+		actions: false,
 		columns: {
 			client_code: {
 				title: 'Client Code',
