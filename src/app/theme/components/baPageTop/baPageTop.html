@@ -11,8 +11,8 @@
   </div>
   
   <div class="user-profile clearfix">
-    <div class="dropdown al-user-profile" >
-      <button class="btn btn-default btn-auth" (click)="Logout($event)" ><a href class="signout"><i class="fa fa-power-off" (click)="Logout($event)"></i></a></button>
+    <div class="dropdown al-user-profile" (click)="Logout($event)">
+      <button class="btn btn-default btn-auth"><a href class="signout" (click)="Logout($event)"><i class="fa fa-power-off"></i></a></button>
      <!--  <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
         <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
       </a>

@@ -13,7 +13,7 @@ import 'style-loader!./baPageTop.scss';
   templateUrl: './baPageTop.html',
 })
 export class BaPageTop {
-
+  
   public isScrolled:boolean = false;
   public isMenuCollapsed:boolean = false;
 

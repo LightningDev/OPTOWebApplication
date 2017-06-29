@@ -13,7 +13,8 @@ export class Pallet implements AfterViewInit{
 	inputPallet:string='';
 	inputBinLocation:string='';
 	inputJob:string='';
-	inout:string='in';
+	inout:number=1;
+	type:number;
 
 	constructor(private service: PalletService) {
 		
@@ -32,9 +33,10 @@ export class Pallet implements AfterViewInit{
 	radio_stock(event) {    
 		this.currentRadio = event.currentTarget.defaultValue;
 		if(this.currentRadio=="PalletToLocation"){
+			this.type=0;
 			document.getElementById('PalletToLocation').style.display = 'block';
 			document.getElementById('JobToPallet').style.display = 'none';
-			if(this.inout=="out"){
+			if(this.inout==0){
 				this.inputBinLocation="";
 				document.getElementById('inputBinLocation').style.display = 'none';
 				document.getElementById('BinLocation').style.display = 'none';
@@ -45,15 +47,16 @@ export class Pallet implements AfterViewInit{
 		}
 
 		if(this.currentRadio=="JobToPallet"){
+			this.type=1;
 			document.getElementById('PalletToLocation').style.display = 'none';
 			document.getElementById('JobToPallet').style.display = 'block';
 		}
 	}
 
 	Switch(event) {
-		if(this.inout=="in"){
-			this.inout="out";
-			if(this.inout=="out"){
+		if(this.inout==1){
+			this.inout=0;
+			if(this.inout==0){
 				this.inputBinLocation="";
 				document.getElementById('inputBinLocation').style.display = 'none';
 				document.getElementById('BinLocation').style.display = 'none';
@@ -62,8 +65,8 @@ export class Pallet implements AfterViewInit{
 				document.getElementById('BinLocation').style.display = 'block';
 			}
 		}else{
-			this.inout="in";
-			if(this.inout=="in"){
+			this.inout=1;
+			if(this.inout==1){
 				document.getElementById('inputBinLocation').style.display = 'block';
 				document.getElementById('BinLocation').style.display = 'block';
 			}else{
@@ -75,8 +78,9 @@ export class Pallet implements AfterViewInit{
 
 	Update(event)	{
 		let json = {
+			"type":this.type,
 			"pallet_code": this.inputPallet,
-			"bin_location" : this.inputBinLocation,
+			"bin_location" : this.inputBinLocation.toUpperCase(),
 			"job":this.inputJob,
 			"action" : this.inout,
 		}
@@ -85,7 +89,7 @@ export class Pallet implements AfterViewInit{
 		if(this.inputPallet==""){
 			alert("Input pallet cannot be empty");
 		}else{
-			if(this.inout=="in"){
+			if(this.inout==1){
 				if(this.inputBinLocation == "" && this.currentRadio == "PalletToLocation"){
 					alert("Input location field cannot be empty");
 					return;
@@ -102,9 +106,6 @@ export class Pallet implements AfterViewInit{
 
 			}else{
 				
-				if(this.inputBinLocation == "" && this.currentRadio == "PalletToLocation"){
-					alert("Input location field cannot be empty");
-				}
 				if(this.inputJob == "" && this.currentRadio == "JobToPallet"){
 					alert("Input job field cannot be empty");
 				}else{
