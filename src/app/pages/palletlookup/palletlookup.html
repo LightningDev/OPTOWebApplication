@@ -24,7 +24,7 @@
 	<ba-card >
 		<div class="row">
 			<div class="col-xs-8 col-md-6">
-				<input style="width:150px;height:40px" type="text" class="form-control" id="codeField" [placeholder]="markup" [(ngModel)]="codeField">
+				<input style="width:150px;height:40px;text-transform:uppercase" type="text" class="form-control" id="codeField" [placeholder]="markup" [(ngModel)]="codeField">
 			</div>
 			<div class="col-xs-4 col-md-6">
 				<label class="radio-inline custom-radio nowrap">
@@ -34,5 +34,12 @@
 		</div>
 	</ba-card>
 </div>
-
-
+<div id="table" style="display: none;">
+	<ba-card>
+			<div class="row" >
+				<ba-card baCardClass="with-scroll">
+					<ng2-smart-table [settings]="settings1" [source]="source1"></ng2-smart-table>
+				</ba-card>
+			</div>
+	</ba-card>
+</div>

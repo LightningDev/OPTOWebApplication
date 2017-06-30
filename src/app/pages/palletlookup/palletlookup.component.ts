@@ -19,6 +19,7 @@ export class PalletLookUp implements AfterViewInit{
   inputPallet:string="";
   currentRadio: string="";
   codeField:string="";
+  type:number=0;
 
   markup:string="Default";
 
@@ -29,53 +30,31 @@ export class PalletLookUp implements AfterViewInit{
   settings1 = {
     actions: false,
     columns: {
-      code: {
-        title: 'Location ID',
+      location: {
+        title: 'Loc',
         type: 'text',
       },
-      date: {
-        title: 'Pallet ID',
-        type: 'text',
-      },
-    }
-  };
-
-  //search by Location
-  settings2 = {
-    actions: false,
-    columns: {
-      material: {
+      pallet: {
         title: 'Pallet',
         type: 'text',
       },
-      date: {
+      job: {
         title: 'Job',
+        type: 'text',
+      },
+      date: {
+        title: 'Date',
+        type: 'text',
+      },
+      description: {
+        title: 'Desc',
         type: 'text',
       },
     }
   };
-
-  //search by Pallet
-  settings3 = {
-    actions: false,
-    columns: {
-      material: {
-        title: 'Location',
-        type: 'text',
-      },
-      date: {
-        title: 'Job',
-        type: 'text',
-      },
-    }
-  };
-
 
   source1: LocalDataSource = new LocalDataSource();
-  source2: LocalDataSource = new LocalDataSource();
-  source3: LocalDataSource = new LocalDataSource();
   constructor(private palletlookupservice: PalletLookUpService) {
-
   }
 
   ngAfterViewInit(){
@@ -87,56 +66,66 @@ export class PalletLookUp implements AfterViewInit{
   radio_stock(event) {    
     this.currentRadio = event.currentTarget.defaultValue;
 
-    if(this.currentRadio=="Job"){
-       this.markup="Job for Loc and Pallet";
-       // document.getElementById("codeField").placeholder="Job for Loc and Pallet";
-     }
-
-    if(this.currentRadio=="Location"){
+     if(this.currentRadio=="Location"){
        this.markup="Loc for Pallet and Job";
+       this.type=1;
        //document.getElementById("codeField").placeholder="Loc for Pallet and Job";
      }
 
-    if(this.currentRadio=="Pallet"){
+     if(this.currentRadio=="Pallet"){
        this.markup="Pallet for Loc and Job";
+       this.type=2;
        //document.getElementById("codeField").placeholder="Pallet for Loc and Job";
      }
+
+     if(this.currentRadio=="Job"){
+       this.markup="Job for Loc and Pallet";
+       this.type=3;
+       // document.getElementById("codeField").placeholder="Job for Loc and Pallet";
+     }
+
+   
+  
   }
 
 
-  // check(event){
-  //  if(this.currentRadio!=""){
-  //    if(this.codeField!=""){ 
-  //      if(this.currentRadio=="inputBarcode"){
-  //        this.locationlookupservice.getLocationByMaterialId(this.codeField).subscribe(res=>{
-  //          if(res.json()["items"][0]["code"]!=" "){
-  //            this.source1.load(res.json()["items"]);
-  //             document.getElementById('material').style.display = 'block';
-  //             document.getElementById('location').style.display = 'none';
-  //           }else{
-  //             alert("Wrong code id")
-  //           }
-  //        })
-  //      }
+  check(event){
+     document.getElementById('table').style.display = 'block';
+   if(this.type!=0){
+     if(this.codeField!=""){ 
+       this.codeField=this.codeField.toUpperCase();
+       if(this.type==1){
+         this.palletlookupservice.getPalletRecByLoc(this.codeField).subscribe(res=>{
+           if(res.json()["items"]!=""){
+             this.source1.load(res.json()["items"]);
+            }else{
+              alert("Location id is not exist")
+            }
+         })
+       }else if(this.type==2){
+         this.palletlookupservice.getPalletRecByPallet(this.codeField).subscribe(res=>{
+           if(res.json()["items"]!=""){
+             this.source1.load(res.json()["items"]);
+           }else{
+              alert("Pallet code is not exist")
+           }
+         })
+       }else{
+         this.palletlookupservice.getPalletRecByJob(this.codeField).subscribe(res=>{
+           if(res.json()["items"]!=""){
+             this.source1.load(res.json()["items"]);
+           }else{
+              alert("Job No is not exist")
+           }
+         })
+       }
+     }else{
+       alert("The input field cannot be empty");
+     }
+   }else{
+      alert("Please select input type");
+   }
 
-  //      if(this.currentRadio=="inputBinLocation"){
-  //        this.materialservice.getMaterialIdByLocationId(this.codeField).subscribe(res=>{
-  //          if(res.json()["items"][0]["code"]!=" "){
-  //            this.source2.load(res.json()["items"]);
-  //            document.getElementById('material').style.display = 'none';
-  //            document.getElementById('location').style.display = 'block';
-  //          }else{
-  //             alert("Wrong code id")
-  //          }
-  //        })
-  //      }
-  //    }else{
-  //      alert("The input field cannot be empty");
-  //    }
-  //  }else{
-  //     alert("Please select input type");
-  //  }
-
-  // }
+  }
 
 }

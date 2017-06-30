@@ -77,6 +77,7 @@ export class Pallet implements AfterViewInit{
 	}
 
 	Update(event)	{
+		console.log(this.type)
 		let json = {
 			"type":this.type,
 			"pallet_code": this.inputPallet,
@@ -88,6 +89,7 @@ export class Pallet implements AfterViewInit{
 
 		if(this.inputPallet==""){
 			alert("Input pallet cannot be empty");
+			return;
 		}else{
 			if(this.inout==1){
 				if(this.inputBinLocation == "" && this.currentRadio == "PalletToLocation"){
@@ -108,6 +110,7 @@ export class Pallet implements AfterViewInit{
 				
 				if(this.inputJob == "" && this.currentRadio == "JobToPallet"){
 					alert("Input job field cannot be empty");
+					return;
 				}else{
 					this.service.sendPallet(json).subscribe(res => {
 						alert(res.json().message);
